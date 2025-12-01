@@ -4,11 +4,17 @@ class SeBtnFilter extends HTMLElement {
     }
 
     connectedCallback() {
+        const ttl = this.getAttribute("ttl");
+        const cat = this.getAttribute("data-cat");
+        const icon = this.getAttribute("data-icon");
+
+
         this.innerHTML=`<article data-cat="highranked">
-            <img src="high-rank.svg" alt="icon">
+            <img src="${icon}" alt="icon">
             <p>${this.getAttribute("ttl")}</p>
         </article>
-`;  
+`;      
+
     }
 
     disconnectedCallback() {

@@ -21,13 +21,13 @@
 
             </select>
             <input type="search" placeholder="..."/>
-            <button type="submit" id="searchButton"><img src="searchButton.svg"></button>
+            <button type="submit" id="searchButton"><img src="./img/searchButton.svg"></button>
         </section>
         
         </form>
         <div class="icon">
-        <button><img src="notifButton.svg"></button>
-        <button><img src="userButton.svg"></button>
+        <button><img src="./img/notifButton.svg"></button>
+        <button><img src="./img/userButton.svg"></button>
         </div>
     </nav>
 <main>
@@ -59,19 +59,19 @@
             <p class="filter-title">ҮНЭЛГЭЭ</p>
             <div class="star-rank">
                 <span class="star" data-value="1">
-                    <img src="greystar.svg">
+                    <img src="./img/greystar.svg">
                 </span>
                 <span class="star" data-value="2">
-                    <img src="greystar.svg">
+                    <img src="./img/greystar.svg">
                 </span>
                 <span class="star" data-value="3">
-                    <img src="greystar.svg">
+                    <img src="./img/greystar.svg">
                 </span>
                 <span class="star" data-value="4">
-                    <img src="greystar.svg">
+                    <img src="./img/greystar.svg">
                 </span>
                 <span class="star" data-value="5">
-                    <img src="greystar.svg">
+                    <img src="./img/greystar.svg">
                 </span>
             </div>
             <input type="hidden" id="ratingValue" value="0">
@@ -103,7 +103,7 @@
             </div>
         </section>
         <button class="search-btn" type="submit"> 
-            <img src="searchButton.svg">
+            <img src="./img/searchButton.svg">
         </button>
     </aside>
     <section class="map">
@@ -112,98 +112,117 @@
         </div>
     </section>
     <section class="category">
-        <se-btn-filter ttl="Undur"></se-btn-filter>
-        <se-btn-filter ttl="Shine"></se-btn-filter>
-        <se-btn-filter></se-btn-filter>
-        <se-btn-filter></se-btn-filter>
+        <se-btn-filter ttl="ҮНЭЛГЭЭ ӨНДӨР" data-cat="highranked" data-icon="./img/high-rank.svg"></se-btn-filter>
+        <se-btn-filter ttl="ШИНЭ" data-cat="new" data-icon="./img/new.svg"></se-btn-filter>
+        <se-btn-filter ttl="УРАМШУУЛАЛ" data-cat="gift" data-icon="./img/gift.svg"></se-btn-filter>
+        <se-btn-filter ttl="ОНЦЛОХ" data-cat="featured" data-icon="./img/fire.svg"></se-btn-filter>
 
-        <article data-cat="new">
-            <img src="new.svg" alt="icon">
-            <p>ШИНЭ</p>
-        </article>
-        <article data-cat="gift">
-            <img src="gift.svg" alt="icon">
-            <p>УРАМШУУЛАЛ</p>
-        </article>
-        <article data-cat="featured">
-            <img src="fire.svg" alt="icon">
-            <p>ОНЦЛОХ</p>
-        </article>
+        
     </section>
-    <section class="relevantlist" id="restaurantList">
+    <section class="relevantlist">
         
         <h3>ӨНДӨР ҮНЭЛГЭЭТЭЙ</h3>
         <br>
-        <section class="rest-list" >
+        <div class="rest-list" >
         <button class="arrowbtn" type="">
-            <img src="leftArrow.svg">
+            <img src="./img/leftArrow.svg">
         </button>
-        <article>
-            <img class="profile" src="il-fiore.png">
+        <article class="rest-profile">
+            <div class="profile-wrapper">
+            <img class="profile" src="./img/il-fiore.png">
+            </div>
             <p class="rest-title">IL FIORE</p>
+            <div class="star-and-rank>">
             <div class="review-div">
                 <p class="rating">4.8</p>
-                <img class="star" src="star.svg">
+                <img class="star" src="./img/star.svg">
                 <p class="review">1.2k</p>
             </div>
             <div class="rank-div">
                 <p class="rank">1</p>
-                <img class="badge" src="badge.svg" alt="rank badge">
+                <img class="badge" src="./img/badge.svg" alt="rank badge">
+            </div>
             </div>
         </article>
-        <article>
-            <img class="profile" src="alfie.jpeg">
+        <article class="rest-profile">
+            <div class="profile-wrapper">
+            <img class="profile" src="./img/alfie.jpeg">
+            </div>
             <p class="rest-title">ALFIE RESTAURANT</p>
+            <div class="star-and-rank">
             <div class="review-div">
             <p class="rating">4.8</p>
-            <img class="star" src="star.svg">
+            <img class="star" src="./img/star.svg">
             <p class="review"></p>1.1k</p>
             </div>
             <div class="rank-div">
             <p class="rank">2</p>
-            <img class="badge" src="badge.svg" alt="rankg badge">
+            <img class="badge" src="./img/badge.svg" alt="rankg badge">
+            </div>
             </div>
         </article>
-        <article>
-            <img class="profile" src="moms-touch.jpg">
+        <article class="rest-profile">
+            <div class="profile-wrapper">
+            <img class="profile" src="./img/moms-touch.jpg">
+            </div>
             <p class="rest-title">MOM'S TOUCH</p>
+            <div class="star-and-rank">
             <div class="review-div">
             <p class="rating">4.7</p>
-            <img class="star" src="star.svg">
+            <img class="star" src="./img/star.svg">
             <p class="review"></p>1.2k</p>
             </div>
             <div class="rank-div">
             <p class="rank">3</p>
-            <img class="badge" src="badge.svg" alt="rankg badge">
+            <img class="badge" src="./img/badge.svg" alt="rankg badge">
+            </div>
             </div>
         </article>
-        <article>
-            <img class="profile" src="la-fontana.jpeg">
+        <article class="rest-profile">
+            <div class="profile-wrapper">
+            <img class="profile" src="./img/la-fontana.jpeg">
+            </div>
             <p class="rest-title">LA FONTANA</p>
+            <div class="star-and-rank">
             <div class="review-div">
             <p class="rating">4.6</p>
-            <img class="star" src="star.svg">
+            <img class="star" src="./img/star.svg">
             <p class="review"></p>1.2k</p>
             </div>
             <div class="rank-div">
             <p class="rank">4</p>
-            <img class="badge" src="badge.svg" alt="rankg badge">
+            <img class="badge" src="./img/badge.svg" alt="rankg badge">
+            </div>
             </div>
         </article>
         <button class="arrowbtn" type="">
-            <img src="rightArrow.svg">
+            <img src="./img/rightArrow.svg">
         </button>
-        </section>
+    </div>
+    </section>
+    <section class="special">
+        <h3>WEEKLY SPECIAL</h3>
+        <div class="ad-wrapper">
+            <img src="./img/row-ad1.jpeg">
+        </div>
+        <div class="ad-wrapper">
+            <img src="./img/row-ad2.jpeg">
+        </div>
+        <div class="ad-wrapper">
+            <img src="./img/row-ad3.jpeg">
+        </div>
     </section>
     <aside class="ad">
-        <img src="ad.jpg" alt="ramen ad">
-        <img src="ad2.jpeg" alt="potato ad">
+        <div class="aside-ad">
+        <img src="./img/ad.jpg" alt="ramen ad">
+        </div>
+        <div class="aside-ad">
+        <img src="./img/ad2.jpeg" alt="potato ad">
+        </div>
+
     </aside>
-    <section class="weeklyAD">
-        <img src="" alt="">
-        <img src="" alt="">
-        <img src="" alt="">
-    </section>
+   
+    
     </main>
     <footer>
         <div class="footer-section">
