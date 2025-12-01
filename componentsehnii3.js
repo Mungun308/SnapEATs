@@ -1,5 +1,5 @@
 const FilterManager = () => {
-    console.log('Hailt ehellee');
+    console.log('🎮 Тоглоом эхэллээ!');
     //hool
     document.querySelectorAll('input[name="foodCategory"]').forEach(box => {
         box.onchange = () => console.log('🍔 Хоол:', box.value);
@@ -12,10 +12,16 @@ const FilterManager = () => {
     //od
     document.querySelectorAll('.star').forEach(star => {
         star.onclick = () => {
-            console.log('⭐ Од дарлаа:', star.getAttribute('data-value'));
-            // Өнгө өөрчлөх
-            star.style.color = 'gold';
-            star.style.transform = 'scale(1.2)';
+            const selectedRating = parseInt(star.getAttribute('data-value'));
+            console.log('⭐ Та', selectedRating, 'од өгч байна!');
+            document.querySelectorAll('.star').forEach((s, index) => {
+                const starNumber = index + 1;
+                if (starNumber <= selectedRating) {
+                    s.innerHTML = '<img src="star.svg" alt="active star">'; 
+                } else {
+                    s.innerHTML = '<img src="greystar.svg" alt="inactive star">';
+                }
+            });
         };
     });
 };
