@@ -469,7 +469,7 @@ h3{
 .star-and-rank{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
 }
 
 .badge{
@@ -525,8 +525,10 @@ h3{
     overflow: hidden;
 }
 
-.aside-ad{
-    object-fit: cover;
+.aside-ad img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
 }
 
 footer{

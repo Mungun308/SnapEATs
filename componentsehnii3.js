@@ -17,9 +17,9 @@ const FilterManager = () => {
             document.querySelectorAll('.star').forEach((s, index) => {
                 const starNumber = index + 1;
                 if (starNumber <= selectedRating) {
-                    s.innerHTML = '<img src="star.svg" alt="active star">'; 
+                    s.innerHTML = '<img src="./img/star.svg" alt="active star">'; 
                 } else {
-                    s.innerHTML = '<img src="greystar.svg" alt="inactive star">';
+                    s.innerHTML = '<img src="./img/greystar.svg" alt="inactive star">';
                 }
             });
         };
