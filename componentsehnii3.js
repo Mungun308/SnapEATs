@@ -1,16 +1,22 @@
 const FilterManager = () => {
-    console.log('🚀 Бүх шүүлтүүр бэлэн!');
-    //hoolnii turluud
-    document.querySelectorAll('input[name="foodCategory"]').forEach(box => 
-        box.onchange = () => console.log(`🍔 ${box.value} сонгогдлоо`)
-    );
+    console.log('Hailt ehellee');
+    //hool
+    document.querySelectorAll('input[name="foodCategory"]').forEach(box => {
+        box.onchange = () => console.log('🍔 Хоол:', box.value);
+    });
     //une
     const slider = document.querySelector('input[type="range"]');
-    slider?.oninput = () => console.log(`💰 Үнэ: ${slider.value}₮`);
+    if (slider) {
+        slider.oninput = () => console.log('💰 Үнэ:', slider.value);
+    }
     //od
-    document.querySelectorAll('.star').forEach(star =>
-        star.onclick = () => console.log(`⭐ ${star.dataset.value} од`)
-    );
+    document.querySelectorAll('.star').forEach(star => {
+        star.onclick = () => {
+            console.log('⭐ Од дарлаа:', star.getAttribute('data-value'));
+            // Өнгө өөрчлөх
+            star.style.color = 'gold';
+            star.style.transform = 'scale(1.2)';
+        };
+    });
 };
-//ehluulne
-addEventListener('DOMContentLoaded', FilterManager);
+document.addEventListener('DOMContentLoaded', FilterManager);
