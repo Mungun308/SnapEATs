@@ -1,126 +1,153 @@
 [
     {
-      "rest_name": "Сүмиida Korean BBQ",
-      "distance": "1.2 км",
-      "schedule": "Өнөөдөр: 10:00–22:00",
-      "address": "БГД, 3-р хороо, Энхтайваны өргөн чөлөө 45",
-      "rank": 4.8,
-      "amount_of_people_ranked": 235
+        "rest_name": "Сүмиida Korean BBQ",
+        "distance": "1.2 км",
+        "schedule": "Өнөөдөр: 10:00–22:00",
+        "address": "БГД, 3-р хороо, Энхтайваны өргөн чөлөө 45",
+        "rank": 4.8,
+        "amount_of_people_ranked": 235,
+        "category": "korean",
+        "price_range": 45000,
+        "img":"./img/il-fiore.png"
     },
     {
-      "rest_name": "The Bull Hotpot",
-      "distance": "850 м",
-      "schedule": "Өнөөдөр: 11:00–23:30",
-      "address": "СБД, 1-р хороо, Тэди төвийн зүүн талд",
-      "rank": 4.6,
-      "amount_of_people_ranked": 410
+        "rest_name": "The Bull Hotpot",
+        "distance": "850 м",
+        "schedule": "Өнөөдөр: 11:00–23:30",
+        "address": "СБД, 1-р хороо, Тэди төвийн зүүн талд",
+        "rank": 4.6,
+        "amount_of_people_ranked": 410,
+        "category": "chinese",
+        "price_range": 35000
     },
     {
-      "rest_name": "Burger & Fries",
-      "distance": "2.3 км",
-      "schedule": "Өнөөдөр: 09:00–21:00",
-      "address": "ЧД, 5-р хороо, Барилгачдын гудамж 12",
-      "rank": 4.4,
-      "amount_of_people_ranked": 189
+        "rest_name": "Burger & Fries",
+        "distance": "2.3 км",
+        "schedule": "Өнөөдөр: 09:00–21:00",
+        "address": "ЧД, 5-р хороо, Барилгачдын гудамж 12",
+        "rank": 4.4,
+        "amount_of_people_ranked": 189,
+        "category": "western",
+        "price_range": 25000
     },
     {
-      "rest_name": "Tokyo House Sushi",
-      "distance": "1.7 км",
-      "schedule": "Өнөөдөр: 10:30–22:00",
-      "address": "БЗД, 15-р хороо, Нархан хотхон 102",
-      "rank": 4.9,
-      "amount_of_people_ranked": 527
+        "rest_name": "Tokyo House Sushi",
+        "distance": "1.7 км",
+        "schedule": "Өнөөдөр: 10:30–22:00",
+        "address": "БЗД, 15-р хороо, Нархан хотхон 102",
+        "rank": 4.9,
+        "amount_of_people_ranked": 527,
+        "category": "japanese",
+        "price_range": 55000
     },
     {
-      "rest_name": "Nomads Mongolian Cuisine",
-      "distance": "3.0 км",
-      "schedule": "Өнөөдөр: 12:00–23:00",
-      "address": "СБД, 11-р хороо, Чингисийн өргөн чөлөө 17",
-      "rank": 4.7,
-      "amount_of_people_ranked": 314
-    },
-  
-  
-  
-    {
-      "rest_name": "Seoul Garden",
-      "distance": "1.1 км",
-      "schedule": "Өнөөдөр: 10:00–22:00",
-      "address": "СБД, 7-р хороо, Сөүлийн гудамж 14",
-      "rank": 4.5,
-      "amount_of_people_ranked": 268
+        "rest_name": "Nomads Mongolian Cuisine",
+        "distance": "3.0 км",
+        "schedule": "Өнөөдөр: 12:00–23:00",
+        "address": "СБД, 11-р хороо, Чингисийн өргөн чөлөө 17",
+        "rank": 4.7,
+        "amount_of_people_ranked": 314,
+        "category": "mongolian",
+        "price_range": 30000
     },
     {
-      "rest_name": "Mexican Taco Bar",
-      "distance": "2.8 км",
-      "schedule": "Өнөөдөр: 11:00–23:00",
-      "address": "БЗД, 13-р хороо, Жуковын гудамж 22",
-      "rank": 4.3,
-      "amount_of_people_ranked": 142
+        "rest_name": "Seoul Garden",
+        "distance": "1.1 км",
+        "schedule": "Өнөөдөр: 10:00–22:00",
+        "address": "СБД, 7-р хороо, Сөүлийн гудамж 14",
+        "rank": 4.5,
+        "amount_of_people_ranked": 268,
+        "category": "korean",
+        "price_range": 40000
     },
     {
-      "rest_name": "Viet Pho 88",
-      "distance": "900 м",
-      "schedule": "Өнөөдөр: 09:00–21:30",
-      "address": "ЧД, 4-р хороо, Жуулчны гудамж 38",
-      "rank": 4.7,
-      "amount_of_people_ranked": 381
+        "rest_name": "Mexican Taco Bar",
+        "distance": "2.8 км",
+        "schedule": "Өнөөдөр: 11:00–23:00",
+        "address": "БЗД, 13-р хороо, Жуковын гудамж 22",
+        "rank": 4.3,
+        "amount_of_people_ranked": 142,
+        "category": "other",
+        "price_range": 28000
     },
     {
-      "rest_name": "Tokyo Ramen Hub",
-      "distance": "1.9 км",
-      "schedule": "Өнөөдөр: 11:00–22:00",
-      "address": "СБД, 1-р хороо, Төв номын сангийн хойд талд",
-      "rank": 4.6,
-      "amount_of_people_ranked": 244
+        "rest_name": "Viet Pho 88",
+        "distance": "900 м",
+        "schedule": "Өнөөдөр: 09:00–21:30",
+        "address": "ЧД, 4-р хороо, Жуулчны гудамж 38",
+        "rank": 4.7,
+        "amount_of_people_ranked": 381,
+        "category": "other",
+        "price_range": 32000
     },
     {
-      "rest_name": "Italiano Pasta & Pizza",
-      "distance": "3.4 км",
-      "schedule": "Өнөөдөр: 10:00–23:00",
-      "address": "ХУД, 11-р хороо, Зайсангийн гудамж 18",
-      "rank": 4.8,
-      "amount_of_people_ranked": 512
+        "rest_name": "Tokyo Ramen Hub",
+        "distance": "1.9 км",
+        "schedule": "Өнөөдөр: 11:00–22:00",
+        "address": "СБД, 1-р хороо, Төв номын сангийн хойд талд",
+        "rank": 4.6,
+        "amount_of_people_ranked": 244,
+        "category": "japanese",
+        "price_range": 35000
     },
     {
-      "rest_name": "Urban Coffee Roasters",
-      "distance": "650 м",
-      "schedule": "Өнөөдөр: 08:00–20:00",
-      "address": "СБД, 6-р хороо, Сэнтрал Тауэр 1 давхар",
-      "rank": 4.4,
-      "amount_of_people_ranked": 198
+        "rest_name": "Italiano Pasta & Pizza",
+        "distance": "3.4 км",
+        "schedule": "Өнөөдөр: 10:00–23:00",
+        "address": "ХУД, 11-р хороо, Зайсангийн гудамж 18",
+        "rank": 4.8,
+        "amount_of_people_ranked": 512,
+        "category": "western",
+        "price_range": 48000
     },
     {
-      "rest_name": "Hotpot Palace",
-      "distance": "2.1 км",
-      "schedule": "Өнөөдөр: 12:00–23:30",
-      "address": "БГД, 10-р хороо, 3-р хороолол, 23-р байр",
-      "rank": 4.7,
-      "amount_of_people_ranked": 337
+        "rest_name": "Urban Coffee Roasters",
+        "distance": "650 м",
+        "schedule": "Өнөөдөр: 08:00–20:00",
+        "address": "СБД, 6-р хороо, Сэнтрал Тауэр 1 давхар",
+        "rank": 4.4,
+        "amount_of_people_ranked": 198,
+        "category": "other",
+        "price_range": 18000
     },
     {
-      "rest_name": "BBQ SmokeHouse",
-      "distance": "4.0 км",
-      "schedule": "Өнөөдөр: 11:30–22:00",
-      "address": "ХУД, 15-р хороо, Ривер Гарден 302",
-      "rank": 4.5,
-      "amount_of_people_ranked": 156
+        "rest_name": "Hotpot Palace",
+        "distance": "2.1 км",
+        "schedule": "Өнөөдөр: 12:00–23:30",
+        "address": "БГД, 10-р хороо, 3-р хороолол, 23-р байр",
+        "rank": 4.7,
+        "amount_of_people_ranked": 337,
+        "category": "chinese",
+        "price_range": 42000
     },
     {
-      "rest_name": "Mediterranean Olive",
-      "distance": "2.6 км",
-      "schedule": "Өнөөдөр: 10:00–22:00",
-      "address": "СБД, 8-р хороо, Олимп плаза 3 давхар",
-      "rank": 4.6,
-      "amount_of_people_ranked": 221
+        "rest_name": "BBQ SmokeHouse",
+        "distance": "4.0 км",
+        "schedule": "Өнөөдөр: 11:30–22:00",
+        "address": "ХУД, 15-р хороо, Ривер Гарден 302",
+        "rank": 4.5,
+        "amount_of_people_ranked": 156,
+        "category": "western",
+        "price_range": 52000
     },
     {
-      "rest_name": "Korean Street Food House",
-      "distance": "1.3 км",
-      "schedule": "Өнөөдөр: 09:00–21:00",
-      "address": "БЗД, 4-р хороо, Их тойруу 55",
-      "rank": 4.2,
-      "amount_of_people_ranked": 119
+        "rest_name": "Mediterranean Olive",
+        "distance": "2.6 км",
+        "schedule": "Өнөөдөр: 10:00–22:00",
+        "address": "СБД, 8-р хороо, Олимп плаза 3 давхар",
+        "rank": 4.6,
+        "amount_of_people_ranked": 221,
+        "category": "other",
+        "price_range": 38000
+    },
+    {
+        "rest_name": "Korean Street Food House",
+        "distance": "1.3 км",
+        "schedule": "Өнөөдөр: 09:00–21:00",
+        "address": "БЗД, 4-р хороо, Их тойруу 55",
+        "rank": 4.2,
+        "amount_of_people_ranked": 119,
+        "category": "korean",
+        "price_range": 22000
     }
-  ]
-  
+]
