@@ -121,6 +121,312 @@
       "address": "БЗД, 4-р хороо, Их тойруу 55",
       "rank": 4.2,
       "amount_of_people_ranked": 119
-    }
+    },
+    {
+    "rest_name": "Seoul Street Snacks",
+    "distance": "1.4 км",
+    "schedule": "Өнөөдөр: 10:00–22:00",
+    "address": "БЗД, 4-р хороо, Их тойруу 55",
+    "rank": 4.2,
+    "amount_of_people_ranked": 113
+  },
+  {
+    "rest_name": "Pho 99 Vietnamese Kitchen",
+    "distance": "900 м",
+    "schedule": "Өнөөдөр: 09:00–21:30",
+    "address": "ЧД, 4-р хороо, Жуулчны гудамж 38",
+    "rank": 4.7,
+    "amount_of_people_ranked": 378
+  },
+  {
+    "rest_name": "Mediterranean Olive",
+    "distance": "2.6 км",
+    "schedule": "Өнөөдөр: 10:00–22:00",
+    "address": "СБД, 8-р хороо, Олимп плаза 4 давхар",
+    "rank": 4.6,
+    "amount_of_people_ranked": 212
+  },
+  {
+    "rest_name": "Taco Fiesta",
+    "distance": "3.2 км",
+    "schedule": "Өнөөдөр: 11:00–22:00",
+    "address": "БГД, 6-р хороо, 21-р байр",
+    "rank": 4.3,
+    "amount_of_people_ranked": 155
+  },
+  {
+    "rest_name": "Korean Kimchi House",
+    "distance": "1.0 км",
+    "schedule": "Өнөөдөр: 10:00–21:30",
+    "address": "СБД, 3-р хороо, Сөүлийн гудамж 19",
+    "rank": 4.5,
+    "amount_of_people_ranked": 234
+  },
+  {
+    "rest_name": "Tokyo Bento Café",
+    "distance": "1.7 км",
+    "schedule": "Өнөөдөр: 09:30–20:30",
+    "address": "БЗД, 1-р хороо, 13-р хороолол 24-р байр",
+    "rank": 4.1,
+    "amount_of_people_ranked": 128
+  },
+  {
+    "rest_name": "Steakhouse Prime Cut",
+    "distance": "3.8 км",
+    "schedule": "Өнөөдөр: 12:00–23:00",
+    "address": "ХУД, 4-р хороо, Оргил Шилтгээн 107",
+    "rank": 4.8,
+    "amount_of_people_ranked": 402
+  },
+  {
+    "rest_name": "Thai Chili Corner",
+    "distance": "2.9 км",
+    "schedule": "Өнөөдөр: 11:00–22:30",
+    "address": "СБД, 2-р хороо, Номин оффис 2 давхар",
+    "rank": 4.4,
+    "amount_of_people_ranked": 209
+  },
+  {
+    "rest_name": "Greek Taverna",
+    "distance": "3.5 км",
+    "schedule": "Өнөөдөр: 10:00–22:00",
+    "address": "СБД, 9-р хороо, Хүннү гудамж 12",
+    "rank": 4.3,
+    "amount_of_people_ranked": 164
+  },
+  {
+    "rest_name": "Dragon Wok",
+    "distance": "1.6 км",
+    "schedule": "Өнөөдөр: 11:00–21:30",
+    "address": "БГД, 5-р хороо, 4-р хороолол 7-р байр",
+    "rank": 4.2,
+    "amount_of_people_ranked": 121
+  },
+
+  {
+    "rest_name": "Ulaanbaatar Grill House",
+    "distance": "2.2 км",
+    "schedule": "Өнөөдөр: 12:00–23:00",
+    "address": "ЧД, 2-р хороо, Сүхбаатарын гудамж 19",
+    "rank": 4.7,
+    "amount_of_people_ranked": 390
+  },
+  {
+    "rest_name": "Blue Lagoon Café",
+    "distance": "1.3 км",
+    "schedule": "Өнөөдөр: 08:00–19:00",
+    "address": "СБД, 5-р хороо, Блюмон төв 1 давхар",
+    "rank": 4.5,
+    "amount_of_people_ranked": 210
+  },
+  {
+    "rest_name": "Fusion Street Kitchen",
+    "distance": "2.0 км",
+    "schedule": "Өнөөдөр: 11:00–22:00",
+    "address": "БЗД, 14-р хороо, Натори төв 2 давхар",
+    "rank": 4.2,
+    "amount_of_people_ranked": 134
+  },
+  {
+    "rest_name": "Indian Curry Mahal",
+    "distance": "3.1 км",
+    "schedule": "Өнөөдөр: 10:30–22:00",
+    "address": "ХУД, 12-р хороо, Рапид харш 5-12",
+    "rank": 4.6,
+    "amount_of_people_ranked": 260
+  },
+  {
+    "rest_name": "Tengeriin Shagai",
+    "distance": "1.9 км",
+    "schedule": "Өнөөдөр: 11:00–21:00",
+    "address": "СБД, 1-р хороо, Тэнгэрийн гудамж 15",
+    "rank": 4.3,
+    "amount_of_people_ranked": 144
+  },
+  {
+    "rest_name": "Korean Dosirak Bar",
+    "distance": "900 м",
+    "schedule": "Өнөөдөр: 09:00–20:00",
+    "address": "БГД, 2-р хороо, Урт цагаан 2 давхар",
+    "rank": 4.1,
+    "amount_of_people_ranked": 109
+  },
+  {
+    "rest_name": "Sushi Bento Hub",
+    "distance": "2.4 км",
+    "schedule": "Өнөөдөр: 11:00–22:00",
+    "address": "СБД, 6-р хороо, Шангри-Ла Молл B2",
+    "rank": 4.8,
+    "amount_of_people_ranked": 501
+  },
+  {
+    "rest_name": "Vegan Green Bowl",
+    "distance": "1.7 км",
+    "schedule": "Өнөөдөр: 10:00–20:00",
+    "address": "ЧД, 1-р хороо, Номад төв 3-р давхар",
+    "rank": 4.4,
+    "amount_of_people_ranked": 178
+  },
+  {
+    "rest_name": "Pizza Republic",
+    "distance": "2.3 км",
+    "schedule": "Өнөөдөр: 10:30–22:30",
+    "address": "СБД, 3-р хороо, Саппоро төв 1 давхар",
+    "rank": 4.2,
+    "amount_of_people_ranked": 165
+  },
+  {
+    "rest_name": "Waffle Bubble Bar",
+    "distance": "750 м",
+    "schedule": "Өнөөдөр: 09:00–20:00",
+    "address": "СБД, 4-р хороо, Төв зам 16",
+    "rank": 4.3,
+    "amount_of_people_ranked": 122
+  },
+  {
+    "rest_name": "Seafood Harbor",
+    "distance": "3.0 км",
+    "schedule": "Өнөөдөр: 12:00–23:00",
+    "address": "ХУД, 16-р хороо, Яармаг шинэ суурьшил 402",
+    "rank": 4.7,
+    "amount_of_people_ranked": 284
+  },
+
+  {
+    "rest_name": "Khinkali Georgia Café",
+    "distance": "1.8 км",
+    "schedule": "Өнөөдөр: 11:00–22:00",
+    "address": "БГД, 7-р хороо, Алтай хотхон 102",
+    "rank": 4.5,
+    "amount_of_people_ranked": 221
+  },
+  {
+    "rest_name": "Noodle Factory",
+    "distance": "1.2 км",
+    "schedule": "Өнөөдөр: 09:30–21:00",
+    "address": "СБД, 2-р хороо, Их тойруу 19",
+    "rank": 4.1,
+    "amount_of_people_ranked": 131
+  },
+  {
+    "rest_name": "Crispy Chicken Lab",
+    "distance": "650 м",
+    "schedule": "Өнөөдөр: 10:00–22:00",
+    "address": "БЗД, 6-р хороо, Токиогийн гудамж 54",
+    "rank": 4.4,
+    "amount_of_people_ranked": 188
+  },
+  {
+    "rest_name": "Fresh Salad Bar",
+    "distance": "1.3 км",
+    "schedule": "Өнөөдөр: 09:00–20:00",
+    "address": "ЧД, 3-р хороо, Сургуулийн гудамж 2",
+    "rank": 4.3,
+    "amount_of_people_ranked": 148
+  },
+  {
+    "rest_name": "Yakiniku Japanese BBQ",
+    "distance": "2.7 км",
+    "schedule": "Өнөөдөр: 12:00–22:30",
+    "address": "СБД, 10-р хороо, Олимп хотхон E6",
+    "rank": 4.8,
+    "amount_of_people_ranked": 330
+  },
+  {
+    "rest_name": "Shabu Hot Pot",
+    "distance": "3.6 км",
+    "schedule": "Өнөөдөр: 11:30–23:00",
+    "address": "ХУД, 19-р хороо, Хан хилс 501",
+    "rank": 4.6,
+    "amount_of_people_ranked": 260
+  },
+  {
+    "rest_name": "Turkish Doner House",
+    "distance": "900 м",
+    "schedule": "Өнөөдөр: 09:00–21:00",
+    "address": "БГД, 1-р хороо, Зүүн дөрвөн зам 34",
+    "rank": 4.1,
+    "amount_of_people_ranked": 119
+  },
+  {
+    "rest_name": "Café Parisienne",
+    "distance": "2.0 км",
+    "schedule": "Өнөөдөр: 08:30–20:30",
+    "address": "СБД, 5-р хороо, Романс төв 2 давхар",
+    "rank": 4.7,
+    "amount_of_people_ranked": 201
+  },
+  {
+    "rest_name": "Ramen Samurai",
+    "distance": "1.4 км",
+    "schedule": "Өнөөдөр: 10:00–22:00",
+    "address": "БЗД, 17-р хороо, Маршалын гудамж 9",
+    "rank": 4.5,
+    "amount_of_people_ranked": 280
+  },
+  {
+    "rest_name": "Gobi Steak & Grill",
+    "distance": "4.1 км",
+    "schedule": "Өнөөдөр: 12:00–23:00",
+    "address": "ХУД, 18-р хороо, Грийн хаус 203",
+    "rank": 4.8,
+    "amount_of_people_ranked": 311
+  },
+  {
+    "rest_name": "Healthy Juice Bar",
+    "distance": "700 м",
+    "schedule": "Өнөөдөр: 08:00–19:00",
+    "address": "СБД, 9-р хороо, Спортын төв өргөөнд",
+    "rank": 4.3,
+    "amount_of_people_ranked": 129
+  },
+  {
+    "rest_name": "Dim Sum Factory",
+    "distance": "2.8 км",
+    "schedule": "Өнөөдөр: 11:00–21:30",
+    "address": "БГД, 12-р хороо, 4-р хороолол 32-р байр",
+    "rank": 4.4,
+    "amount_of_people_ranked": 193
+  },
+  {
+    "rest_name": "Korean Tteokbokki Lab",
+    "distance": "1.0 км",
+    "schedule": "Өнөөдөр: 10:00–22:00",
+    "address": "СБД, 7-р хороо, 1-р 40 мянгат 10-р байр",
+    "rank": 4.6,
+    "amount_of_people_ranked": 230
+  },
+  {
+    "rest_name": "Sushi 24/7",
+    "distance": "3.3 км",
+    "schedule": "Өнөөдөр: 24 цаг",
+    "address": "ХУД, 1-р хороо, Зайсангийн зам 22",
+    "rank": 4.2,
+    "amount_of_people_ranked": 176
+  },
+  {
+    "rest_name": "Bistro Manhattan",
+    "distance": "2.1 км",
+    "schedule": "Өнөөдөр: 11:00–23:00",
+    "address": "СБД, 5-р хороо, Түгээмэл төв 4 давхар",
+    "rank": 4.5,
+    "amount_of_people_ranked": 214
+  },
+  {
+    "rest_name": "Milk Tea Corner",
+    "distance": "950 м",
+    "schedule": "Өнөөдөр: 09:00–20:00",
+    "address": "БЗД, 2-р хороо, 13-р хороолол 34-р байр",
+    "rank": 4.1,
+    "amount_of_people_ranked": 143
+  },
+  {
+    "rest_name": "Himalayan Curry Spot",
+    "distance": "2.6 км",
+    "schedule": "Өнөөдөр: 10:00–22:00",
+    "address": "ЧД, 2-р хороо, 40 мянгат 35-р байр",
+    "rank": 4.4,
+    "amount_of_people_ranked": 187
+  }
   ]
   
