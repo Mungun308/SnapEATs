@@ -24,5 +24,11 @@ const FilterManager = () => {
             });
         };
     });
+    document.querySelectorAll('.rest-profile').forEach(card => {
+        card.addEventListener('click', () => {
+            window.location.href = 'RestaurantProfile1.html';
+        });
+    });
 };
+
 document.addEventListener('DOMContentLoaded', FilterManager);
