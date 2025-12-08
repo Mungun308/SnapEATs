@@ -41,7 +41,7 @@
       "rank": 4.7,
       "amount_of_people_ranked": 420,
       "category": "mongolian",
-      "restriction": "halal"
+      "restriction": "vegetarian options"
     },
     {
       "rest_id": "rest_005",
@@ -137,7 +137,7 @@
       "distance": "2.6 км",
       "schedule": "Өнөөдөр: 10:00–22:00",
       "address": "СБД, 8-р хороо, Олимп плаза 4 давхар",
-      "rank": 4.6,
+      "rank": 2.6,
       "amount_of_people_ranked": 212,
       "category": "italian",
       "restriction": "vegetarian options"
@@ -148,7 +148,7 @@
       "distance": "3.2 км",
       "schedule": "Өнөөдөр: 11:00–22:00",
       "address": "БГД, 6-р хороо, 21-р байр",
-      "rank": 4.3,
+      "rank": 2.3,
       "amount_of_people_ranked": 155,
       "category": "fastfood",
       "restriction": "spicy foods"
@@ -170,7 +170,7 @@
       "distance": "1.7 км",
       "schedule": "Өнөөдөр: 09:30–20:30",
       "address": "БЗД, 1-р хороо, 13-р хороолол 24-р байр",
-      "rank": 4.1,
+      "rank": 2.1,
       "amount_of_people_ranked": 128,
       "category": "japanese",
       "restriction": "contains egg"
@@ -181,7 +181,7 @@
       "distance": "3.8 км",
       "schedule": "Өнөөдөр: 12:00–23:00",
       "address": "ХУД, 4-р хороо, Оргил Шилтгээн 107",
-      "rank": 4.8,
+      "rank": 3.8,
       "amount_of_people_ranked": 402,
       "category": "fastfood",
       "restriction": "no restriction"
@@ -192,7 +192,7 @@
       "distance": "2.9 км",
       "schedule": "Өнөөдөр: 11:00–22:30",
       "address": "СБД, 2-р хороо, Номин оффис 2 давхар",
-      "rank": 4.4,
+      "rank": 1.4,
       "amount_of_people_ranked": 209,
       "category": "chinese",
       "restriction": "spicy foods"
@@ -203,7 +203,7 @@
       "distance": "3.5 км",
       "schedule": "Өнөөдөр: 10:00–22:00",
       "address": "СБД, 9-р хороо, Хүннү гудамж 12",
-      "rank": 4.3,
+      "rank": 2.3,
       "amount_of_people_ranked": 164,
       "category": "italian",
       "restriction": "vegetarian options"
@@ -214,7 +214,7 @@
       "distance": "1.6 км",
       "schedule": "Өнөөдөр: 11:00–21:30",
       "address": "БГД, 5-р хороо, 4-р хороолол 7-р байр",
-      "rank": 4.2,
+      "rank": 3.2,
       "amount_of_people_ranked": 121,
       "category": "chinese",
       "restriction": "contains gluten"
