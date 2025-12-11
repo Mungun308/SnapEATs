@@ -1,5 +1,5 @@
 const restaurants = [
-  { rest_name: "Сүмиida Korean BBQ", distance: "1.2 км", schedule: "Өнөөдөр: 10:00–22:00", address: "БГД, 3-р хороо, Энхтайваны өргөн чөлөө 45", rank: 4.8, amount_of_people_ranked: 235, isNew: false, hasPromotion: true, isFeatured: true },
+  { rest_name: "Yuna Korean BBQ", distance: "1.2 км", schedule: "Өнөөдөр: 10:00–22:00", address: "БГД, 3-р хороо, Энхтайваны өргөн чөлөө 45", rank: 4.8, amount_of_people_ranked: 235, isNew: false, hasPromotion: true, isFeatured: true },
   { rest_name: "The Bull Hotpot", distance: "850 м", schedule: "Өнөөдөр: 11:00–23:30", address: "СБД, 1-р хороо, Тэди төвийн зүүн талд", rank: 4.6, amount_of_people_ranked: 410, isNew: true, hasPromotion: false, isFeatured: false },
   { rest_name: "Burger & Fries", distance: "2.3 км", schedule: "Өнөөдөр: 09:00–21:00", address: "ЧД, 5-р хороо, Барилгачдын гудамж 12", rank: 4.4, amount_of_people_ranked: 189, isNew: true, hasPromotion: true, isFeatured: false },
   { rest_name: "Tokyo House Sushi", distance: "1.7 км", schedule: "Өнөөдөр: 10:30–22:00", address: "БЗД, 15-р хороо, Нархан хотхон 102", rank: 4.9, amount_of_people_ranked: 527, isNew: false, hasPromotion: false, isFeatured: true },
@@ -65,7 +65,7 @@ function createRestaurantCard(restaurant, index) {
           <p class="review">${formatReviews(restaurant.amount_of_people_ranked)}</p>
         </div>
         <div class="rank-div">
-          <p class="rank">${index + 1}</p>
+          <p class="rank">${index+1}</p>
           <img class="badge" src="./img/badge.svg" alt="rank badge">
         </div>
       </div>

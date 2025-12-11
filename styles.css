@@ -420,7 +420,8 @@ h3{
 }
 
 .rest-profile .profile-wrapper{
-    position: absolute;
+    display: flex;
+    justify-content: center;
     left:50%;
     width: 140px;
     height: 140px;
@@ -451,6 +452,14 @@ h3{
     align-items:flex-end;
     justify-content: start;
 }
+
+.review-div, .rating, .review, .rank-div, .rank {
+    background-color: yellow !important;
+    display: block !important;
+    visibility: visible !important;
+    color: black !important;
+    font-size: 16px !important;
+  }
 
 .review{
     font-size: 8px;
@@ -514,7 +523,7 @@ h3{
     margin:10px;
     padding:10px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     padding: 0;
     height: 500px;
