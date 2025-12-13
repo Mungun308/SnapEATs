@@ -5,8 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnapEATs</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="./com/se-btn-filter.js"></script>
-    <script src="componentsehnii3.js" defer></script>
+    <!-- ONLY THESE SCRIPTS -->
+     <script src="auth.js" defer></script>
+<script src="SIMPLE-FILTER.js" defer></script>  
+<script src="working-filter.js" defer></script>
+<script>
+    // Simple restaurant click handler
+    document.addEventListener('DOMContentLoaded', function() {
+        // Make restaurant cards clickable
+        document.querySelectorAll('.rest-profile').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.onclick = function() {
+                const name = this.querySelector('.rest-title').textContent;
+                const ids = {
+                    'IL FIORE': 1,
+                    'ALFIE RESTAURANT': 2,
+                    'MOM\'S TOUCH': 3,
+                    'LA FONTANA': 4
+                };
+                window.location.href = `restaurant-profile.html?id=${ids[name] || 1}`;
+            };
+        });
+        
+        // Make filters not remove cards (just show messages)
+        document.querySelectorAll('.filter input, .search-btn').forEach(el => {
+            el.onchange = el.onclick = function(e) {
+                e.preventDefault();
+                console.log('Filter clicked (no cards removed)');
+            };
+        });
+    });
+</script>
+    <script>
+    // Placeholder image URLs
+    const placeholderImages = {
+        cover: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=400&fit=crop',
+        logo: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=200&h=200&fit=crop',
+        menu: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop',
+        user: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop'
+    };
+    </script>
+    <script>
+    // Load restaurants data
+    fetch('./restaurants.json')
+        .then(response => response.json())
+        .then(data => {
+            window.restaurantData = data;
+            console.log('Restaurants loaded:', data.length);
+        })
+        .catch(error => {
+            console.error('Error loading restaurants:', error);
+            window.restaurantData = [];
+        });
+</script>
+<script>
+    // Debug script
+    window.addEventListener('load', function() {
+        console.log('Page fully loaded');
+        console.log('User button exists:', !!document.getElementById('userButton'));
+        console.log('All nav buttons:', document.querySelectorAll('nav button').length);
+        
+        // Manually test auth
+        setTimeout(function() {
+            if (typeof showSimpleAuth === 'function') {
+                console.log('showSimpleAuth function is available');
+            } else {
+                console.error('showSimpleAuth function NOT found');
+            }
+        }, 1000);
+    });
+</script>
+<style>
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .auth-modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .close-auth {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            padding: 10px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .auth-tab.active {
+            border-bottom: 3px solid #ff6b6b;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        
+        .auth-form {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .auth-form.active {
+            display: flex;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .auth-submit-btn {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .auth-error {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .user-name {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        
+        .logout-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -28,8 +204,10 @@
         </form>
         <div class="icon">
         <button><img src="./img/notifButton.svg"></button>
-        <button><img src="./img/userButton.svg"></button>
-        </div>
+        <button id="userAuthButton">
+        <img src="./img/userButton.svg">
+        </button>
+</div>
     </nav>
 <main>
     <aside class="filter">
@@ -100,7 +278,7 @@
             <p class="sub">100м-5км</p>
             <div class="range-container">
                 <span class="range-value">2km</span>
-                <input type="range" id="slider" min="0" max="5">
+                <input type="range" id="slider1" min="0" max="5">
             </div>
         </section>
         <button class="search-btn" type="submit"> 

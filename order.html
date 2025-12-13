@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Захиалга - SnapEATs</title>
+    <style>
+        body { font-family: Arial; padding: 20px; max-width: 500px; margin: 0 auto; }
+        .cart-item { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 10px; }
+        .total { font-size: 20px; font-weight: bold; margin: 20px 0; }
+        button { background: #ff6b6b; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Таны захиалга</h1>
+    <div id="cartItems"></div>
+    <div class="total" id="totalPrice">Нийт: ₮0</div>
+    <button onclick="checkout()">Захиалах</button>
+    
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function displayCart() {
+            const container = document.getElementById('cartItems');
+            let total = 0;
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p>Сагс хоосон байна</p>';
+                return;
+            }
+            
+            container.innerHTML = cart.map(item => {
+                const price = parseInt(item.price.replace(/[^0-9]/g, ''));
+                total += price * item.quantity;
+                return `
+                    <div class="cart-item">
+                        <h3>${item.itemName}</h3>
+                        <p>${item.price} x ${item.quantity}</p>
+                        <p>Ресторан: ${item.restaurantName}</p>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('totalPrice').textContent = `Нийт: ₮${total.toLocaleString()}`;
+        }
+        
+        function checkout() {
+            if (cart.length === 0) return;
+            alert('Захиалга амжилттай! Баярлалаа!');
+            localStorage.removeItem('cart');
+            window.location.href = 'index.html';
+        }
+        
+        displayCart();
+    </script>
+</body>
+</html>

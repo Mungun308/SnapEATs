@@ -1,0 +1,31 @@
+<!-- Save as test-filters.html -->
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>Filter Test</h1>
+    
+    <input type="checkbox" id="testCheckbox"> Test Checkbox
+    
+    <script>
+        console.log('Testing filter system...');
+        
+        // Test if SIMPLE-FILTER.js is loaded
+        if (typeof applyFilters === 'function') {
+            console.log('✅ applyFilters function exists');
+        } else {
+            console.log('❌ applyFilters function NOT found');
+        }
+        
+        // Test clicking
+        document.getElementById('testCheckbox').addEventListener('change', function() {
+            console.log('Checkbox clicked:', this.checked);
+            if (typeof applyFilters === 'function') {
+                applyFilters();
+            }
+        });
+    </script>
+    
+    <!-- Load your filter script -->
+    <script src="SIMPLE-FILTER.js"></script>
+</body>
+</html>
