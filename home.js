@@ -16,5 +16,6 @@ function createRestaurantCard(item){
         <article>
             <img class="profile" src="${item.img}"></img>
             <p class="rest-title" >"${item.title}"</p>
+            
         </article>
 }
