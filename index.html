@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapEATs</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="./com/se-btn-filter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js" defer></script>
+    <script src="auth.js" defer></script>
+    <script src="main-filter.js" defer></script>
+    <script src="cart.js" defer></script>
+    <script src="categoryFilter.js" defer></script>
+</head>
+<body>
+    <nav>
+        <h1>Snap<span>EAT</span>s</h1>
+        <form>
+            <section class="search">
+                <select id="category">
+                    <option value="all">ТӨРӨЛ</option>
+                    <option value="asian">Ази</option>
+                    <option value="european">Европ</option>
+                    <option value="mongolian">Монгол</option>
+                </select>
+                <input type="search" placeholder="Хайх..."/>
+                <button type="submit" id="searchButton"><img src="./img/searchButton.svg"></button>
+            </section>
+        </form>
+        <div class="icon">
+            <button><img src="./img/notifButton.svg"></button>
+            <button onclick="showAuthModal()"><img src="./img/userButton.svg"></button>
+        </div>
+    </nav>
+    
+    <main>
+        <aside class="filter">
+            <section class="filter-section">
+                <p class="filter-title">ХООЛНЫ ТӨРӨЛ</p>
+                <div class="checkbox-list">
+                    <label><input type="checkbox" name="foodCategory" value="fastfood">Түргэн хоол</label>
+                    <label><input type="checkbox" name="foodCategory" value="mongolian">Монгол</label>
+                    <label><input type="checkbox" name="foodCategory" value="korean">Солонгос</label>
+                    <label><input type="checkbox" name="foodCategory" value="italian">Итали</label>
+                    <label><input type="checkbox" name="foodCategory" value="chinese">Хятад</label>
+                    <label><input type="checkbox" name="foodCategory" value="japanese">Япон</label>
+                    <label><input type="checkbox" name="foodCategory" value="snack">Snack</label>
+                    <label><input type="checkbox" name="foodCategory" value="drinks">Уух зүйлс</label>
+                    <label><input type="checkbox" name="foodCategory" value="bakery">Bakery</label>
+                </div>
+            </section>
+            
+            <section class="filter-section">
+                <p class="filter-title">ҮНИЙН МУЖ</p>
+                <p class="sub">0-100.000</p>
+                <div class="range-container">
+                    <span class="range-value">60k</span>
+                    <input type="range" id="slider" min="0" max="100000" value="60000">
+                </div>
+            </section>
+            
+            <section class="filter-section">
+                <p class="filter-title">ҮНЭЛГЭЭ</p>
+                <div class="star-rank">
+                    <span class="star" data-value="1"><img src="./img/greystar.svg"></span>
+                    <span class="star" data-value="2"><img src="./img/greystar.svg"></span>
+                    <span class="star" data-value="3"><img src="./img/greystar.svg"></span>
+                    <span class="star" data-value="4"><img src="./img/greystar.svg"></span>
+                    <span class="star" data-value="5"><img src="./img/greystar.svg"></span>
+                </div>
+                <input type="hidden" id="ratingValue" value="0">
+            </section>
+            
+            <section class="filter-section">
+                <p class="filter-title">ХЯЗГААРЛАЛТ</p>
+                <div class="checkbox-list">
+                    <label><span>Vegan</span><input type="checkbox" name="foodLimit" value="Vegan"></label>
+                    <label><span>Gluten-free</span><input type="checkbox" name="foodLimit" value="Gluten-free"></label>
+                    <label><span>Keto diet</span><input type="checkbox" name="foodLimit" value="Keto diet"></label>
+                    <label><span>Lactose-free</span><input type="checkbox" name="foodLimit" value="Lactose-free"></label>
+                </div>
+            </section>
+            
+            <section class="filter-section">
+                <p class="filter-title">ХЭМЖЭЭ</p>
+                <div class="checkbox-list-row">
+                    <label><span>1</span><input type="checkbox" name="portion" value="1"></label>
+                    <label><span>2</span><input type="checkbox" name="portion" value="2"></label>
+                    <label><span>3</span><input type="checkbox" name="portion" value="3"></label>
+                    <label><span>4+</span><input type="checkbox" name="portion" value="4+"></label>
+                </div>
+            </section>
+            
+            <section class="filter-section">
+                <p class="filter-title">ЗАЙ</p>
+                <p class="sub">100м-5км</p>
+                <div class="range-container">
+                    <span class="range-value" id="rangeText">2km</span>
+                    <input type="range" id="distance" min="0" max="5" value="2" step="0.1">
+                </div>
+            </section>
+            
+            <button class="search-btn" type="submit"><img src="./img/searchButton.svg"> Шүүх</button>
+        </aside>
+        
+        <section class="map">
+            <div class="map-container">
+                <iframe width="500" height="300" allow="geolocation" src="https://api.maptiler.com/maps/outdoor-v2/?key=2iidMx3413KnVGBkYkOV#15.4/47.91740/106.92005"></iframe>
+            </div>
+        </section>
+        
+        <section class="category">
+            <se-btn-filter ttl="ҮНЭЛГЭЭ ӨНДӨР" data-cat="highranked" data-icon="./img/high-rank.svg"></se-btn-filter>
+            <se-btn-filter ttl="ШИНЭ" data-cat="new" data-icon="./img/new.svg"></se-btn-filter>
+            <se-btn-filter ttl="УРАМШУУЛАЛ" data-cat="gift" data-icon="./img/gift.svg"></se-btn-filter>
+            <se-btn-filter ttl="ОНЦЛОХ" data-cat="featured" data-icon="./img/fire.svg"></se-btn-filter>
+        </section>
+        
+        <section class="relevantlist">
+            <h3 id="categoryTitle">ӨНДӨР ҮНЭЛГЭЭТЭЙ</h3>
+            <div class="rest-list">
+                <button class="arrowbtn" type="button" onclick="scrollRestaurants(-1)"><img src="./img/leftArrow.svg"></button>
+                <button class="arrowbtn" type="button" onclick="scrollRestaurants(1)"><img src="./img/rightArrow.svg"></button>
+            </div>
+        </section>
+        
+        <section class="special">
+            <h3>WEEKLY SPECIAL</h3>
+            <div class="ad-row">
+                <div class="ad-wrapper"><img src="./img/row-ad1.jpeg"></div>
+                <div class="ad-wrapper"><img src="./img/row-ad2.jpeg"></div>
+                <div class="ad-wrapper"><img src="./img/row-ad3.jpeg"></div>
+            </div>
+        </section>
+        
+        <aside class="ad">
+            <div class="aside-ad"><img src="./img/ad.jpg" alt="ramen ad"></div>
+            <div class="aside-ad"><img src="./img/ad2.jpeg" alt="potato ad"></div>
+        </aside>
+        
+        <div class="basket">
+            <button onclick="viewCart()"><img src="./img/basket.svg"></button>
+        </div>
+        
+        <footer>
+            <div class="footer-section">
+                <h4>БИДЭНТЭЙ ХОЛБОГДОХ</h4>
+                <ul>
+                    <li>С.Жамъян Гүнгийн Гудамж Silk Road, SBD - 1 khoroo, Ulaanbaatar 14240</li>
+                    <li>976-77110022</li>
+                    <li>info@snapeats.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>SNAPEATS</h4>
+                <ul>
+                    <li>Бидний тухай</li>
+                    <li>Баннер байршуулах</li>
+                    <li>Карьер</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>ХАРИЛЦАГЧ</h4>
+                <ul>
+                    <li><a href="#" onclick="showAuthModal()">Бүртгүүлэх</a></li>
+                    <li>Хамтын ажиллагаа</li>
+                    <li>Санал хүсэлт</li>
+                </ul>
+            </div>
+        </footer>
+    </main>
+    
+    <script>
+        function scrollRestaurants(direction) {
+            const list = document.querySelector('.rest-list');
+            const scrollAmount = 300;
+            list.scrollLeft += direction * scrollAmount;
+        }
+        
+        function viewCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Таны сагс хоосон байна');
+            } else {
+                window.location.href = 'order.html';
+            }
+        }
+        
+        function showLogin() {
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('signupSection').style.display = 'none';
+        }
+        
+        function showSignup() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('signupSection').style.display = 'block';
+        }
+        
+        function updateUserDisplay(user) {
+            console.log('User updated:', user);
+            // Update UI with user info
+        }
+    </script>
+</body>
+</html>
