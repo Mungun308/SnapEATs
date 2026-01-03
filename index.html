@@ -9,9 +9,21 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="app.js" defer></script>
     <script src="auth.js" defer></script>
-    <script src="main-filter.js" defer></script>
-    <script src="cart.js" defer></script>
+    <script src="restaurants-data.js"></script>
+    <script src="main-filter.js" defer></script>  <!-- This should load restaurants data -->
+     <!-- This uses restaurants data -->
     <script src="categoryFilter.js" defer></script>
+    <script src="cart.js" defer></script>
+    <script src="location.js" defer></script>
+<script>
+// Debug script to check if restaurants are available
+setTimeout(() => {
+    console.log('=== DEBUG CHECK ===');
+    console.log('window.restaurants:', window.restaurants ? window.restaurants.length : 'undefined');
+    console.log('window.allRestaurants:', window.allRestaurants ? window.allRestaurants.length : 'undefined');
+    console.log('=== END DEBUG ===');
+}, 1000);
+</script>
 </head>
 <body>
     <nav>
@@ -101,9 +113,23 @@
                 </div>
             </section>
             
-            <button class="search-btn" type="submit"><img src="./img/searchButton.svg"> Шүүх</button>
+            <button class="search-btn" type="button" id="filterButton"><img src="./img/searchButton.svg"> Шүүх</button>
         </aside>
-        
+
+
+        <section class="filtered-results" id="filteredResults" style="display: none;">
+        <div class="filtered-header">
+            <h2 id="filteredTitle">ШҮҮЛТИЙН ҮР ДҮН</h2>
+            <button class="clear-filter-btn" onclick="clearFilters()">Шүүлт цэвэрлэх</button>
+        </div>
+        <div class="results-container" id="resultsContainer">
+            <!-- Filtered restaurants will appear here -->
+        </div>
+    </section>
+    
+    
+            
+
         <section class="map">
             <div class="map-container">
                 <iframe width="500" height="300" allow="geolocation" src="https://api.maptiler.com/maps/outdoor-v2/?key=2iidMx3413KnVGBkYkOV#15.4/47.91740/106.92005"></iframe>
@@ -202,5 +228,17 @@
             // Update UI with user info
         }
     </script>
+    <script>
+console.log('Debug - Checking setup:');
+console.log('1. Filter button:', document.getElementById('filterButton'));
+console.log('2. Restaurants data:', window.restaurants ? 'Loaded' : 'Not loaded');
+console.log('3. FilterSystem functions:', typeof applyFilters, typeof clearFilters);
+</script>
+<!-- Debug script -->
+<script>
+console.log('=== DEBUG START ===');
+console.log('Script loading order check');
+</script>
+
 </body>
 </html>
