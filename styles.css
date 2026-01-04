@@ -148,6 +148,7 @@ nav form{
     display:flex;
     justify-content: center;
     width:50%;
+    min-width: 150px;
     align-items:center;
     gap:10px;
     flex: 1;
@@ -306,6 +307,7 @@ main{
 .star-rank{
     display: flex;
     justify-content: space-around;
+    height: var(--fontsize-medium);
 }
 
 .star-rank .star {
@@ -461,8 +463,8 @@ h3{
 .rest-profile .profile-wrapper{
     display: flex;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: 125px;
+    height: 125px;
     overflow: hidden;
     border-radius: 50%;
     border: none;
@@ -539,6 +541,7 @@ h3{
     background: var(--color-grey);
 }
 
+/*weekly special ad*/
 .special{
     width: 100%;
     display: flex;
@@ -973,9 +976,7 @@ h3{
     margin-top: 15px;
 }
 
-/* ===========================================
-   CART SECTION STYLES
-=========================================== */
+/*cart*/
 .cart-section {
     grid-column: 1 / -1;
     max-width: 700px;
@@ -1156,9 +1157,7 @@ h3{
     background: #e69500;
 }
 
-/* ===========================================
-   PAYMENT SECTION STYLES
-=========================================== */
+/*payment*/
 .payment-section {
     grid-column: 1 / -1;
     max-width: 600px;
@@ -1280,9 +1279,7 @@ h3{
     background: #219a52;
 }
 
-/* ===========================================
-   SUCCESS SECTION STYLES
-=========================================== */
+/*successful order*/
 .success-section {
     grid-column: 1 / -1;
     display: flex;
