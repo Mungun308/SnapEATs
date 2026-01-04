@@ -129,18 +129,25 @@ async function login() {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         
         // Save to Supabase if available
-        if (supabaseClient) {
-            try {
-                await supabaseClient.from('users').upsert({
-                    username: currentUser.username,
-                    email: currentUser.email,
-                    name: currentUser.name,
-                    created_at: currentUser.createdAt
-                }, { onConflict: 'email' });
-            } catch (e) {
-                console.log('Supabase save failed, continuing with localStorage');
+        const {data,error}=await window.supabase
+            .from('users')
+            .insert([
+                {
+                    id:useImperativeHandle,
+                    username:username,
+                    email:email,
+                    name:name,
+                    created_at:new Date()
+                }
+            ]);
+
+            if(error){
+                console.error('Supabase insert error', error);
+                document.getElementById('errorMsg').textContent='Signup error'
+                error.message;
+                localStorage.removeItem('currentUser');
+                return;
             }
-        }
         
         showMainApp();
         showNotification('Амжилттай нэвтэрлээ!');
@@ -1029,6 +1036,32 @@ function showSuccess() {
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
+
+    //Save to Supabase
+    async function createOrder() {
+        const { data, error } = await supabase
+          .from("orders")
+          .insert([
+            {
+                id: 'order_' + Date.now(),
+                checkInCode: checkInCode,
+                items: cart,
+                bookingInfo: bookingInfo,
+                restaurant: cart[0] ? cart[0].restaurantName : '',
+                total: total,
+                status: 'confirmed',
+                createdAt: new Date().toISOString()
+            }
+          ])
+          .select();
+      
+        if (error) {
+          console.error(error.message);
+        } else {
+          console.log("Order created:", data);
+        }
+      }
+      
     
     // Display booking details
     document.getElementById('bookingDetails').innerHTML = `
@@ -1042,6 +1075,21 @@ function showSuccess() {
     `;
     
     window.scrollTo(0, 0);
+}
+
+function displayMyOrder(){
+    document.getElementById('bookingDetails').innerHTML=`
+        <div class="booking-info">
+            <p><strong>Ресторан:</strong> ${order.restaurant}</p>
+            <p><strong>Огноо:</strong> ${bookingInfo.date}</p>
+            <p><strong>Цаг:</strong> ${bookingInfo.time}</p>
+            <p><strong>Хүний тоо:</strong> ${bookingInfo.guests}</p>
+            <p><strong>Нийт төлбөр:</strong> ₮${order.total.toLocaleString()}</p>
+            <p><strong>Checkin code:</strong> ${bookingInfo.checkInCode}</p>
+            }
+        </div>
+    `;
+    window.scrollTo(0,0);
 }
 
 function generateCheckInCode() {
@@ -1085,7 +1133,10 @@ function viewOrders() {
     }).join('');
     
     alert('Миний захиалгууд:\n\n' + orders.map(function(o) {
-        return o.restaurant + ' - ' + o.checkInCode + ' (' + o.bookingInfo.date + ')';
+        return `
+            <div class="show-order">
+
+            `
     }).join('\n'));
 }
 
