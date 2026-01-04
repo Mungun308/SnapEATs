@@ -3,12 +3,10 @@ class SEBtnFilter extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         
-        // Атрибутуудыг унших
         const title = this.getAttribute('ttl') || 'ТОВЧ';
         const category = this.getAttribute('data-cat') || '';
         const icon = this.getAttribute('data-icon') || '';
         
-        // CSS
         const style = document.createElement('style');
         style.textContent = `
             .filter-btn {
@@ -28,13 +26,17 @@ class SEBtnFilter extends HTMLElement {
             }
             
             .filter-btn:hover {
-                border-color: #FFA500;
+                
                 transform: translateY(-2px);
             }
             
             .filter-btn.active {
                 background: #F4F4F8;
+                border-radius:10px;
+                                border:2px solid;
+
                 border-color: #FFD700;
+                
             }
             
             .icon {
@@ -52,7 +54,6 @@ class SEBtnFilter extends HTMLElement {
             }
         `;
         
-        // HTML
         const html = `
             <div class="filter-btn">
                 ${icon ? `<img src="${icon}" class="icon">` : ''}
@@ -63,13 +64,10 @@ class SEBtnFilter extends HTMLElement {
         this.shadowRoot.appendChild(style);
         this.shadowRoot.innerHTML += html;
         
-        // Дарах event
         const btn = this.shadowRoot.querySelector('.filter-btn');
         btn.addEventListener('click', () => {
-            // Active/inactive төлөв өөрчлөх
             btn.classList.toggle('active');
             
-            // Event явуулах
             this.dispatchEvent(new CustomEvent('filterChange', {
                 detail: {
                     category: category,
@@ -84,5 +82,4 @@ class SEBtnFilter extends HTMLElement {
     }
 }
 
-// Компонентыг бүртгэх
 customElements.define('se-btn-filter', SEBtnFilter);
