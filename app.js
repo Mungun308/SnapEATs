@@ -55,9 +55,7 @@ const categoryTitles = {
     featured: "ОНЦЛОХ"
 };
 
-// ===========================================
-// INITIALIZATION
-// ===========================================
+//init
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Loaded');
     
@@ -92,9 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ===========================================
-// AUTHENTICATION FUNCTIONS
-// ===========================================
+//auth
 function showLogin() {
     document.getElementById('loginSection').style.display = 'block';
     document.getElementById('signupSection').style.display = 'none';
@@ -128,7 +124,7 @@ async function login() {
         
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         
-        // Save to Supabase if available
+        // Save to Supabase 
         const {data,error}=await window.supabase
             .from('users')
             .insert([
@@ -225,9 +221,7 @@ function showMainApp() {
     displayRestaurantsByCategory(currentCategory);
 }
 
-// ===========================================
-// LOCATION FUNCTIONS
-// ===========================================
+//location
 function getUserLocation() {
     const mapDisplay = document.getElementById('mapDisplay');
     
@@ -246,7 +240,7 @@ function getUserLocation() {
                 // Display map with user location
                 mapDisplay.innerHTML = `
                     <iframe 
-                        src="https://www.openstreetmap.org/export/embed.html?bbox=${userLocation.lng - 0.02}%2C${userLocation.lat - 0.02}%2C${userLocation.lng + 0.02}%2C${userLocation.lat + 0.02}&layer=mapnik&marker=${userLocation.lat}%2C${userLocation.lng}"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=${userLocation.lng - 0.002}%2C${userLocation.lat - 0.002}%2C${userLocation.lng + 0.002}%2C${userLocation.lat + 0.002}&layer=mapnik&marker=${userLocation.lat}%2C${userLocation.lng}"
                         style="width: 100%; height: 100%; border: 0; border-radius: 10px;"
                         allowfullscreen>
                     </iframe>
@@ -268,7 +262,7 @@ function getUserLocation() {
                         allowfullscreen>
                     </iframe>
                     <p style="position: absolute; bottom: 10px; left: 10px; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 5px; font-size: 12px;">
-                        📍 Улаанбаатар (анхдагч)
+                        📍 Улаанбаатар 
                     </p>
                 `;
             },
@@ -286,9 +280,7 @@ function getUserLocation() {
     }
 }
 
-// ===========================================
-// FILTER FUNCTIONS
-// ===========================================
+//filter
 function initializeFilters() {
     // Food category checkboxes
     document.querySelectorAll('input[name="foodCategory"]').forEach(function(checkbox) {
@@ -497,9 +489,7 @@ function applyAdditionalFilters(restaurantsList, filters) {
     });
 }
 
-// ===========================================
-// RESTAURANT DISPLAY FUNCTIONS
-// ===========================================
+//category
 function filterRestaurantsByCategory(category) {
     let filtered;
     switch (category) {
@@ -1003,7 +993,7 @@ function processPayment() {
     }
     
     // Show loading
-    showNotification('Төлбөр боловсруулж байна...');
+    showNotification('Төлбөр хүлээж байна...');
     
     // Simulate payment processing
     setTimeout(function() {
@@ -1032,7 +1022,7 @@ function showSuccess() {
         createdAt: new Date().toISOString()
     };
     
-    // Save to orders history
+    //Save local
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
@@ -1101,9 +1091,7 @@ function generateCheckInCode() {
     return code;
 }
 
-// ===========================================
-// USER MENU FUNCTIONS
-// ===========================================
+//user menu
 function showUserMenu() {
     document.getElementById('userMenuModal').style.display = 'flex';
 }

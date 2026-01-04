@@ -10,7 +10,7 @@ class SEBtnFilter extends HTMLElement {
         const style = document.createElement('style');
         style.textContent = `
             .filter-btn {
-                width: 150px;
+                width: 200px;
                 height: 100px;
                 background: #F4F4F8;
                 border-radius: 10px;
