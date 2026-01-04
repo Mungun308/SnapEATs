@@ -1,289 +1,442 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnapEATs</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script type="module" src="./com/se-btn-filter.js"></script>
-    <script src="componentsehnii3.js" defer></script>
-    <script src="componentlast3.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js"></script>
 </head>
 <body>
-    <nav>
-        <h1>Snap<span>EAT</span>s</h1>
-        <form>
-        <section class="search">
-            <select id="category">
-                <option value="all">ТӨРӨЛ</option>
-                <option value="asian">Ази</option>
-                <option value="european">Европ</option>
-                <option value="mongolian">Монгол</option>
-                <option value=""></option>
-
-            </select>
-            <input type="search" placeholder="..."/>
-            <button type="submit" id="searchButton"><img src="./img/searchButton.svg"></button>
-        </section>
-        
-        </form>
-        <div class="icon">
-        <button><img src="./img/notifButton.svg"></button>
-        <button><img src="./img/userButton.svg"></button>
+    <!-- Login Required Modal -->
+    <div id="loginRequiredModal" class="login-modal" style="display: flex;">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 20px; color: #ffa500; text-align: center;">SnapEATs-д тавтай морил!</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #666;">Үйлчилгээ авахын тулд нэвтрэнэ үү</p>
+            
+            <div id="loginSection">
+                <input type="text" id="loginInput" placeholder="Имэйл эсвэл нэр">
+                <input type="password" id="passwordInput" placeholder="Нууц үг">
+                <button onclick="login()" class="auth-btn primary-btn">Нэвтрэх</button>
+                <p style="text-align: center; margin-top: 10px;">
+                    <a href="#" onclick="showSignup()" class="auth-link">Шинэ хэрэглэгч үү? Бүртгүүлэх</a>
+                </p>
+            </div>
+            
+            <div id="signupSection" style="display: none;">
+                <input type="text" id="signupName" placeholder="Бүтэн нэр">
+                <input type="text" id="signupUsername" placeholder="Хэрэглэгчийн нэр">
+                <input type="email" id="signupEmail" placeholder="Имэйл">
+                <input type="password" id="signupPassword" placeholder="Нууц үг">
+                <input type="password" id="signupPassword2" placeholder="Нууц үг давтах">
+                <button onclick="signup()" class="auth-btn secondary-btn">Бүртгүүлэх</button>
+                <p style="text-align: center; margin-top: 10px;">
+                    <a href="#" onclick="showLogin()" class="auth-link">Аль хэдийн бүртгүүлсэн үү? Нэвтрэх</a>
+                </p>
+            </div>
+            
+            <p id="errorMsg" class="error-msg"></p>
         </div>
-    </nav>
-<main>
-    <aside class="filter">
-        <section class="filter-section">
-            <p class="filter-title">ХООЛНЫ ТӨРӨЛ</p>
-            <div class="checkbox-list">
-                <label><input type="checkbox" name="foodCategory" value="fastfood">Түргэн хоол</label>
-                <label><input type="checkbox" name="foodCategory" value="mongolian">Монгол</label>
-                <label><input type="checkbox" name="foodCategory" value="korean">Солонгос</label>
-                <label><input type="checkbox" name="foodCategory" value="italian">Итали</label>
-                <label><input type="checkbox" name="foodCategory" value="chinese">Хятад</label>
-                <label><input type="checkbox" name="foodCategory" value="japanese">Япон</label>
-                <label><input type="checkbox" name="foodCategory" value="snack">Snack</label>
-                <label><input type="checkbox" name="foodCategory" value="drinks">Уух зүйлс</label>
-                <label><input type="checkbox" name="foodCategory" value="bakery">Bakery</label>
+    </div>
 
+    <!-- Main App (hidden until login) -->
+    <div id="mainApp" style="display: none;">
+        <nav>
+            <h1>Snap<span>EAT</span>s</h1>
+            <form onsubmit="return false;">
+                <section class="search">
+                    <select id="category">
+                        <option value="all">ТӨРӨЛ</option>
+                        <option value="asian">АЗИ</option>
+                        <option value="european">ЕВРОП</option>
+                        <option value="mongolian">МОНГОЛ</option>
+                    </select>
+                    <input type="search" id="searchInput" placeholder="Хайх..."/>
+                    <button type="button" id="searchButton" onclick="applyAllFilters()"><img src="./img/searchButton.svg" alt="search"></button>
+                </section>
+            </form>
+            <div class="icon">
+                <button><img src="./img/notifButton.svg" alt="notifications"></button>
+                <button id="userBtn" onclick="showUserMenu()"><img src="./img/userButton.svg" alt="user"></button>
             </div>
-        </section>
-        <section class="filter-section">
-            <p class="filter-title">ҮНИЙН МУЖ</p>
-            <p class="sub">0-100.000</p>
-            <div class="range-container">
-                <span class="range-value">60k</span>
-                <input type="range" id="slider" min="0" max="100000">
-            </div>
-        </section>
-        <section class="filter-section">
-            <p class="filter-title">ҮНЭЛГЭЭ</p>
-            <div class="star-rank">
-                <span class="star" data-value="1">
-                    <img src="./img/greystar.svg">
-                </span>
-                <span class="star" data-value="2">
-                    <img src="./img/greystar.svg">
-                </span>
-                <span class="star" data-value="3">
-                    <img src="./img/greystar.svg">
-                </span>
-                <span class="star" data-value="4">
-                    <img src="./img/greystar.svg">
-                </span>
-                <span class="star" data-value="5">
-                    <img src="./img/greystar.svg">
-                </span>
-            </div>
-            <input type="hidden" id="ratingValue" value="0">
-        </section>
-        <section class="filter-section">
-  <p class="filter-title">ХЯЗГААРЛАЛТ</p>
-  <div class="checkbox-list">
-    <label><span>Vegan</span>
-      <input type="checkbox" name="foodLimit" value="Vegan">
-    </label>
-    <label><span>Gluten-free</span>
-      <input type="checkbox" name="foodLimit" value="Gluten-free">
-    </label>
-    <label><span>Keto diet</span>
-      <input type="checkbox" name="foodLimit" value="Keto diet">
-    </label>
-    <label><span>Lactose-free</span>
-      <input type="checkbox" name="foodLimit" value="Lactose-free">
-    </label>
-  </div>
-</section>
-
-<section class="filter-section">
-  <p class="filter-title">PORTION</p>
-  <div class="checkbox-list-row">
-    <label><span>1</span>
-      <input type="checkbox" name="portion" value="1">
-    </label>
-    <label><span>2</span>
-      <input type="checkbox" name="portion" value="2">
-    </label>
-    <label><span>3</span>
-      <input type="checkbox" name="portion" value="3">
-    </label>
-    <label><span>4+</span>
-      <input type="checkbox" name="portion" value="4+">
-    </label>
-  </div>
-</section>
-
-<section class="filter-section">
-  <p class="filter-title">ЗАЙ</p>
-  <p class="sub">100м-5км</p>
-  <div class="range-container">
-    <span class="range-value" id="rangeText">2km</span>
-    <input type="range" id="distance" min="0" max="5" value="2">
-  </div>
-</section>
-
-        <button class="search-btn" type="submit"> 
-            <img src="./img/searchButton.svg">
-        </button>
-    </aside>
-    <section class="map">
-        <div class="map">
-            <iframe width="500" height="300" allow="geolocation" src="https://api.maptiler.com/maps/outdoor-v2/?key=2iidMx3413KnVGBkYkOV#15.4/47.91740/106.92005"></iframe>
-        </div>
-    </section>
-    <script src="./categoryFilter.js"></script>
-    <section class="category">
-        <se-btn-filter ttl="ҮНЭЛГЭЭ ӨНДӨР" data-cat="highranked" data-icon="./img/high-rank.svg"></se-btn-filter>
-        <se-btn-filter ttl="ШИНЭ" data-cat="new" data-icon="./img/new.svg"></se-btn-filter>
-        <se-btn-filter ttl="УРАМШУУЛАЛ" data-cat="gift" data-icon="./img/gift.svg"></se-btn-filter>
-        <se-btn-filter ttl="ОНЦЛОХ" data-cat="featured" data-icon="./img/fire.svg"></se-btn-filter>
-
+        </nav>
         
-    </section>
-    <section class="relevantlist">
-        
-        <h3>ӨНДӨР ҮНЭЛГЭЭТЭЙ</h3>
-        <br>
-        <div class="rest-list" >
-        <button class="arrowbtn" type="">
-            <img src="./img/leftArrow.svg">
-        </button>
-        <article class="rest-profile">
-            <div class="profile-wrapper">
-            <img class="profile" src="./img/il-fiore.png">
-            </div>
-            <p class="rest-title">IL FIORE</p>
-            <div class="star-and-rank">
-            <div class="review-div">
-                <p class="rating">4.8</p>
-                <img class="star" src="./img/star.svg">
-                <p class="review">1.2k</p>
-            </div>
-            <div class="rank-div">
-                <p class="rank">1</p>
-                <img class="badge" src="./img/badge.svg" alt="rank badge">
-            </div>
-            </div>
-        </article>
-        <article class="rest-profile">
-            <div class="profile-wrapper">
-            <img class="profile" src="./img/alfie.jpeg">
-            </div>
-            <p class="rest-title">ALFIE RESTAURANT</p>
-            <div class="star-and-rank">
-            <div class="review-div">
-            <p class="rating">4.8</p>
-            <img class="star" src="./img/star.svg">
-            <p class="review"></p>1.1k</p>
-            </div>
-            <div class="rank-div">
-            <p class="rank">2</p>
-            <img class="badge" src="./img/badge.svg" alt="rankg badge">
-            </div>
-            </div>
-        </article>
-        <article class="rest-profile">
-            <div class="profile-wrapper">
-            <img class="profile" src="./img/moms-touch.jpg">
-            </div>
-            <p class="rest-title">MOM'S TOUCH</p>
-            <div class="star-and-rank">
-            <div class="review-div">
-            <p class="rating">4.7</p>
-            <img class="star" src="./img/star.svg">
-            <p class="review"></p>1.2k</p>
-            </div>
-            <div class="rank-div">
-            <p class="rank">3</p>
-            <img class="badge" src="./img/badge.svg" alt="rankg badge">
-            </div>
-            </div>
-        </article>
-        <article class="rest-profile">
-            <div class="profile-wrapper">
-                <img class="profile" src="./img/la-fontana.jpeg">
-            </div>
-            <p class="rest-title">LA FONTANA</p>
-                <div class="star-and-rank">
-                    <div class="review-div">
-                        <p class="rating">4.6</p>
-                        <img class="star" src="./img/star.svg">
-                        <p class="review"></p>1.2k</p>
+        <main>
+            <!-- HOME SECTION -->
+            <section id="homeSection">
+                <aside class="filter">
+                    <section class="filter-section">
+                        <p class="filter-title">ХООЛНЫ ТӨРӨЛ</p>
+                        <div class="checkbox-list">
+                            <label><input type="checkbox" name="foodCategory" value="fastfood">Түргэн хоол</label>
+                            <label><input type="checkbox" name="foodCategory" value="mongolian">Монгол</label>
+                            <label><input type="checkbox" name="foodCategory" value="korean">Солонгос</label>
+                            <label><input type="checkbox" name="foodCategory" value="italian">Итали</label>
+                            <label><input type="checkbox" name="foodCategory" value="chinese">Хятад</label>
+                            <label><input type="checkbox" name="foodCategory" value="japanese">Япон</label>
+                            <label><input type="checkbox" name="foodCategory" value="snack">Snack</label>
+                            <label><input type="checkbox" name="foodCategory" value="drinks">Уух зүйлс</label>
+                            <label><input type="checkbox" name="foodCategory" value="bakery">Bakery</label>
+                        </div>
+                    </section>
+                    
+                    <section class="filter-section">
+                        <p class="filter-title">ҮНИЙН МУЖ</p>
+                        <p class="sub">0-100.000</p>
+                        <div class="range-container">
+                            <span class="range-value">60k ₮</span>
+                            <input type="range" id="slider" min="0" max="100000" value="60000">
+                        </div>
+                    </section>
+                    
+                    <section class="filter-section">
+                        <p class="filter-title">ҮНЭЛГЭЭ</p>
+                        <div class="star-rank">
+                            <span class="star" data-value="1"><img src="./img/greystar.svg" alt="star"></span>
+                            <span class="star" data-value="2"><img src="./img/greystar.svg" alt="star"></span>
+                            <span class="star" data-value="3"><img src="./img/greystar.svg" alt="star"></span>
+                            <span class="star" data-value="4"><img src="./img/greystar.svg" alt="star"></span>
+                            <span class="star" data-value="5"><img src="./img/greystar.svg" alt="star"></span>
+                        </div>
+                        <input type="hidden" id="ratingValue" value="0">
+                    </section>
+                    
+                    <section class="filter-section">
+                        <p class="filter-title">ХЯЗГААРЛАЛТ</p>
+                        <div class="checkbox-list">
+                            <label><span>Vegan</span><input type="checkbox" name="foodLimit" value="Vegan"></label>
+                            <label><span>Gluten-free</span><input type="checkbox" name="foodLimit" value="Gluten-free"></label>
+                            <label><span>Keto diet</span><input type="checkbox" name="foodLimit" value="Keto diet"></label>
+                            <label><span>Lactose-free</span><input type="checkbox" name="foodLimit" value="Lactose-free"></label>
+                        </div>
+                    </section>
+                    
+                    <section class="filter-section">
+                        <p class="filter-title">ХЭМЖЭЭ</p>
+                        <div class="checkbox-list-row">
+                            <label><span>1</span><input type="checkbox" name="portion" value="1"></label>
+                            <label><span>2</span><input type="checkbox" name="portion" value="2"></label>
+                            <label><span>3</span><input type="checkbox" name="portion" value="3"></label>
+                            <label><span>4+</span><input type="checkbox" name="portion" value="4+"></label>
+                        </div>
+                    </section>
+                    
+                    <section class="filter-section">
+                        <p class="filter-title">ЗАЙ</p>
+                        <p class="sub">100м-5км</p>
+                        <div class="range-container">
+                            <span class="range-value" id="rangeText">2km</span>
+                            <input type="range" id="distance" min="0" max="5" value="2" step="0.1">
+                        </div>
+                    </section>
+                    
+                    <button class="search-btn" type="button" onclick="applyAllFilters()"><img src="./img/searchButton.svg" alt="search"> Шүүх</button>
+                </aside>
+                
+                <div class="main-content">
+                    <section class="map">
+                        <div class="map-container">
+                            <div id="mapDisplay">
+                                <p style="text-align: center; padding: 20px;">Байршил тодорхойлж байна...</p>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="category">
+                        <se-btn-filter ttl="ҮНЭЛГЭЭ ӨНДӨР" data-cat="highranked" data-icon="./img/high-rank.svg"></se-btn-filter>
+                        <se-btn-filter ttl="ШИНЭ" data-cat="new" data-icon="./img/new.svg"></se-btn-filter>
+                        <se-btn-filter ttl="УРАМШУУЛАЛ" data-cat="gift" data-icon="./img/gift.svg"></se-btn-filter>
+                        <se-btn-filter ttl="ОНЦЛОХ" data-cat="featured" data-icon="./img/fire.svg"></se-btn-filter>
+                    </section>
+                    
+                    <section class="relevantlist">
+                        <h3 id="categoryTitle">ӨНДӨР ҮНЭЛГЭЭТЭЙ</h3>
+                        <div class="rest-list" id="restaurantList">
+                            <button class="arrowbtn" type="button" onclick="scrollRestaurants(-1)"><img src="./img/leftArrow.svg" alt="left"></button>
+                            <button class="arrowbtn" type="button" onclick="scrollRestaurants(1)"><img src="./img/rightArrow.svg" alt="right"></button>
+                        </div>
+                    </section>
+                    
+                    <section class="special">
+                        <h3>WEEKLY SPECIAL</h3>
+                        <div class="ad-row">
+                            <div class="ad-wrapper"><img src="./img/row-ad1.jpeg" alt="ad1"></div>
+                            <div class="ad-wrapper"><img src="./img/row-ad2.jpeg" alt="ad2"></div>
+                            <div class="ad-wrapper"><img src="./img/row-ad3.jpeg" alt="ad3"></div>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- Filtered Results Section (hidden by default) -->
+                <section id="filteredResults" class="filtered-results" style="display: none;">
+                    <div class="results-header">
+                        <button onclick="hideFilteredResults()" class="back-btn">← Буцах</button>
+                        <h3 id="resultsTitle">Хайлтын үр дүн</h3>
                     </div>
-                    <div class="rank-div">
-                        <p class="rank">4</p>
-                        <img class="badge" src="./img/badge.svg" alt="rankg badge">
+                    <div id="filteredRestaurantList" class="filtered-list"></div>
+                </section>
+                
+                <aside class="ad">
+                    <div class="aside-ad"><img src="./img/ad.jpg" alt="ramen ad"></div>
+                    <div class="aside-ad"><img src="./img/ad2.jpeg" alt="potato ad"></div>
+                </aside>
+            </section>
+
+            <!-- RESTAURANT DETAIL SECTION -->
+            <section id="restaurantSection" class="restaurant-detail" style="display: none;">
+                <div class="restaurant-header">
+                    <button class="back-button" onclick="showHome()">←</button>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="shareRestaurant()">🔗</button>
+                        <button class="action-btn" onclick="toggleFavorite()">❤️</button>
+                    </div>
+                    <img id="restaurantCover" class="restaurant-cover" src="" alt="Cover">
+                </div>
+                
+                <div class="restaurant-info">
+                    <img id="restaurantLogo" class="restaurant-logo" src="" alt="Logo">
+                    
+                    <div class="restaurant-title-section">
+                        <h1 id="restaurantName" class="restaurant-name">Loading...</h1>
+                        <p id="restaurantCategory" class="restaurant-category"></p>
+                        <div id="restaurantRating" class="rating-badge">
+                            <span>4.5</span>
+                            <span>★</span>
+                        </div>
+                    </div>
+                    
+                    <div class="restaurant-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="deliveryTime">20-30 мин</div>
+                            <div class="stat-label">Хүргэлтийн хугацаа</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="deliveryFee">₮2,500</div>
+                            <div class="stat-label">Хүргэлтийн төлбөр</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="minOrder">₮15,000</div>
+                            <div class="stat-label">Хамгийн бага захиалга</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="reviewCount">1.2к</div>
+                            <div class="stat-label">Үнэлгээ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-navigation">
+                        <button class="tab-btn active" data-tab="menu">ЦЭС</button>
+                        <button class="tab-btn" data-tab="info">МЭДЭЭЛЭЛ</button>
+                        <button class="tab-btn" data-tab="photos">ЗУРАГ</button>
+                        <button class="tab-btn" data-tab="reviews">ҮНЭЛГЭЭ</button>
+                    </div>
+                    
+                    <div id="menuTab" class="tab-content active">
+                        <h3 class="section-title">ЦЭС</h3>
+                        <div class="menu-grid" id="menuItems"></div>
+                    </div>
+                    
+                    <div id="infoTab" class="tab-content">
+                        <h3 class="section-title">ҮЙЛ АЖИЛЛАГАА</h3>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <h4>ЦАГ АЖИЛЛАГАА</h4>
+                                <div id="openingHours"></div>
+                            </div>
+                            <div class="info-card">
+                                <h4>ХАЯГ БАЙРШИЛ</h4>
+                                <div class="info-item">
+                                    <span>📍</span>
+                                    <span id="restaurantAddress">Төв цэнгэлдэх хүрээлэн, 3-р давхар</span>
+                                </div>
+                                <div class="info-item">
+                                    <span>📞</span>
+                                    <span id="restaurantPhone">7711-0022</span>
+                                </div>
+                            </div>
+                            <div class="info-card">
+                                <h4>ОНЦЛОХ ҮЙЛЧИЛГЭЭ</h4>
+                                <div id="restaurantFeatures"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="photosTab" class="tab-content">
+                        <h3 class="section-title">ЗУРАГ</h3>
+                        <div class="photo-grid" id="restaurantPhotos"></div>
+                    </div>
+                    
+                    <div id="reviewsTab" class="tab-content">
+                        <h3 class="section-title">ҮНЭЛГЭЭ</h3>
+                        <div id="reviewsList"></div>
                     </div>
                 </div>
-        </article>
-        <button class="arrowbtn" type="">
-            <img src="./img/rightArrow.svg">
-        </button>
-    </div>
-    </section>
-    <section class="special">
-        <h3>WEEKLY SPECIAL</h3>
-        <div class="ad-row">
-        <div class="ad-wrapper">
-            <img src="./img/row-ad1.jpeg">
-        </div>
-        <div class="ad-wrapper">
-            <img src="./img/row-ad2.jpeg">
-        </div>
-        <div class="ad-wrapper">
-            <img src="./img/row-ad3.jpeg">
-        </div>
-        </div>
-    </section>
-    <aside class="ad">
-        <div class="aside-ad">
-        <img src="./img/ad.jpg" alt="ramen ad">
-        </div>
-        <div class="aside-ad">
-        <img src="./img/ad2.jpeg" alt="potato ad">
-        </div>
-    </aside>
-   
-    
-    
-    <div class="basket">
-        <button>
-            <img src="./img/basket.svg">
-        </button>
-    </div>
-    <footer>
-        <div class="footer-section">
-            <h4>БИДЭНТЭЙ ХОЛБОГДОХ</h4>
-            <br>
-            <ul>
-                <li>С.Жамъян Гүнгийн Гудамж Silk Road, SBD - 1 khoroo, Ulaanbaatar 14240</li>
-                <li>976-77110022</li>
-                <li>info@snapeats.com</li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h4>SNAPEATS</h4>
-            <br>
-            <ul>
-                <li>Бидний тухай</li>
-                <li>Баннер байршуулах</li>
-                <li>Карьер</li>
+            </section>
 
-            </ul>
+            <!-- CART SECTION -->
+            <section id="cartSection" class="cart-section" style="display: none;">
+                <div class="cart-header">
+                    <button onclick="hideCart()" class="back-btn">← Буцах</button>
+                    <h2>Миний сагс</h2>
+                </div>
+                <div id="cartItems" class="cart-items"></div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Нийт дүн:</span>
+                        <span id="cartTotal">₮0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Хүргэлтийн төлбөр:</span>
+                        <span id="deliveryTotal">₮2,500</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Төлөх дүн:</span>
+                        <span id="grandTotal">₮2,500</span>
+                    </div>
+                </div>
+                <div class="booking-section">
+                    <h3>Ширээ захиалах</h3>
+                    <div class="booking-form">
+                        <div class="form-group">
+                            <label>Хүний тоо:</label>
+                            <select id="guestCount">
+                                <option value="1">1 хүн</option>
+                                <option value="2" selected>2 хүн</option>
+                                <option value="3">3 хүн</option>
+                                <option value="4">4 хүн</option>
+                                <option value="5">5+ хүн</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Огноо:</label>
+                            <input type="date" id="bookingDate">
+                        </div>
+                        <div class="form-group">
+                            <label>Цаг:</label>
+                            <input type="time" id="bookingTime">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="proceedToPayment()" class="checkout-btn">Төлбөр хийх</button>
+            </section>
+
+            <!-- PAYMENT SECTION -->
+            <section id="paymentSection" class="payment-section" style="display: none;">
+                <div class="payment-header">
+                    <button onclick="showCart()" class="back-btn">← Буцах</button>
+                    <h2>Төлбөр</h2>
+                </div>
+                <div class="payment-summary">
+                    <h3>Захиалгын мэдээлэл</h3>
+                    <div id="paymentSummary"></div>
+                </div>
+                <div class="payment-methods">
+                    <h3>Төлбөрийн хэлбэр</h3>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="card" checked>
+                            <span>💳 Картаар</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="qpay">
+                            <span>📱 QPay</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="cash">
+                            <span>💵 Бэлнээр</span>
+                        </label>
+                    </div>
+                </div>
+                <div id="cardDetails" class="card-details">
+                    <div class="form-group">
+                        <label>Картын дугаар:</label>
+                        <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Хүчинтэй хугацаа:</label>
+                            <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV:</label>
+                            <input type="password" id="cardCvv" placeholder="***" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="processPayment()" class="pay-btn">Төлбөр хийх</button>
+            </section>
+
+            <!-- SUCCESS SECTION -->
+            <section id="successSection" class="success-section" style="display: none;">
+                <div class="success-content">
+                    <div class="success-icon">✓</div>
+                    <h2>Амжилттай!</h2>
+                    <p>Таны захиалга амжилттай баталгаажлаа</p>
+                    <div class="check-in-code">
+                        <h3>Check-in код</h3>
+                        <div id="checkInCode" class="code-display">------</div>
+                        <p class="code-info">Энэ кодыг ресторанд ирэхдээ ашиглана уу</p>
+                    </div>
+                    <div class="booking-details" id="bookingDetails"></div>
+                    <button onclick="goToHome()" class="home-btn">Нүүр хуудас руу</button>
+                </div>
+            </section>
+            
+            <footer>
+                <div class="footer-section">
+                    <h4>БИДЭНТЭЙ ХОЛБОГДОХ</h4>
+                    <ul>
+                        <li>С.Жамъян Гүнгийн Гудамж Silk Road, SBD - 1 khoroo, Ulaanbaatar 14240</li>
+                        <li>976-77110022</li>
+                        <li>info@snapeats.com</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>SNAPEATS</h4>
+                    <ul>
+                        <li>Бидний тухай</li>
+                        <li>Баннер байршуулах</li>
+                        <li>Карьер</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>ХАРИЛЦАГЧ</h4>
+                    <ul>
+                        <li>Хамтын ажиллагаа</li>
+                        <li>Санал хүсэлт</li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+        
+        <div class="basket">
+            <button onclick="showCart()">
+                <img src="./img/basket.svg" alt="basket">
+                <span id="cartCount" class="cart-count" style="display: none;">0</span>
+            </button>
         </div>
-        <div class="footer-section">
-            <h4>ХАРИЛЦАГЧ</h4>
-            <br>
-            <ul>
-                <li>Бүртгүүлэх</li>
-                <li>Хамтын ажиллагаа</li>
-                <li>Санал хүсэлт</li>
-            </ul>
+    </div>
+
+    <!-- User Menu Modal -->
+    <div id="userMenuModal" class="user-menu-modal" style="display: none;">
+        <div class="user-menu-content">
+            <button onclick="hideUserMenu()" class="close-btn">×</button>
+            <div class="user-info">
+                <div class="user-avatar">👤</div>
+                <p id="userDisplayName">Хэрэглэгч</p>
+            </div>
+            <div class="user-menu-items">
+                <button onclick="viewOrders()">📋 Миний захиалгууд</button>
+                <button onclick="viewFavorites()">❤️ Дуртай жагсаалт</button>
+                <button onclick="logout()">🚪 Гарах</button>
+            </div>
         </div>
-    </footer>
-    </main>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
