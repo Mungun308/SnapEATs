@@ -516,7 +516,7 @@ h3{
 
 .rating{
     font-size: var(--fontsize-mid);
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .star{
@@ -652,9 +652,9 @@ h3{
 }
 
 .filtered-restaurant-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
+    width: 200px;
+    height: 110px;
+    border-radius: 5px;
     overflow: hidden;
     flex-shrink: 0;
 }
@@ -672,7 +672,7 @@ h3{
 
 .filtered-restaurant-info p {
     margin: 3px 0;
-    font-size: 12px;
+    font-size: var(--fontsize-small);
     color: #666;
 }
 
@@ -684,7 +684,8 @@ h3{
 }
 
 .rating-value {
-    font-weight: bold;
+    font-weight: normal;
+    font-size: var(--fontsize-small);
     color: var(--color-orange);
 }
 
