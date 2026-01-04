@@ -348,9 +348,6 @@ input[type="range"] {
     background-color: var(--color-orange);
 }
 
-/* ===========================================
-   MAIN CONTENT STYLES
-=========================================== */
 .main-content {
     grid-area: cnt;
     display: flex;
@@ -405,17 +402,17 @@ h3{
     width: 100%;
     max-height: 400px;
     min-width: 500px;
+  
 }
 
-/* ===========================================
-   RESTAURANT LIST STYLES
-=========================================== */
+
 .relevantlist{
     padding: 5px;
     display: flex;
     flex-direction: column;
     gap: 5px;
     width: 100vw;
+    scroll-behavior: smooth;
 }
 
 .relevantlist article {
