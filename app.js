@@ -584,7 +584,7 @@ function makeCardsClickable() {
         };
     });
 }
-
+//restaurantiin jagsaaltiig baruun zuun tiish guilgene
 function scrollRestaurants(direction) {
     const list = document.getElementById('restaurantList');
     if (list) {
@@ -592,15 +592,13 @@ function scrollRestaurants(direction) {
     }
 }
 
-// ===========================================
-// FILTERED RESULTS FUNCTIONS
-// ===========================================
+//shuultuur ashiglah uyd undsen nuur huudsiig nuuj zuvhun hailtiin ur dung jagsaaltaar haruulah uuregtei
 function showFilteredResults(filteredRestaurants) {
     const homeContent = document.querySelector('.main-content');
     const filteredSection = document.getElementById('filteredResults');
     const resultsList = document.getElementById('filteredRestaurantList');
     const resultsTitle = document.getElementById('resultsTitle');
-    
+    //undsen huudsiig nuuna
     if (homeContent) homeContent.style.display = 'none';
     if (filteredSection) filteredSection.style.display = 'block';
     
@@ -639,7 +637,7 @@ function showFilteredResults(filteredRestaurants) {
         });
     }
 }
-
+//hereglegch shuultuuree arilgah uyd uyd hailtiin ur dung nuuj undsen nuur huudsiig butsaaj gargaj irne
 function hideFilteredResults() {
     const homeContent = document.querySelector('.main-content');
     const filteredSection = document.getElementById('filteredResults');
@@ -647,10 +645,7 @@ function hideFilteredResults() {
     if (homeContent) homeContent.style.display = 'block';
     if (filteredSection) filteredSection.style.display = 'none';
 }
-
-// ===========================================
-// RESTAURANT DETAIL FUNCTIONS
-// ===========================================
+//restaurantiin delgerengui medeelel
 function showRestaurantDetail(restaurantId) {
     const restaurant = restaurants.find(function(r) { return r.id === restaurantId; });
     if (!restaurant) {
@@ -660,11 +655,11 @@ function showRestaurantDetail(restaurantId) {
     
     currentRestaurant = restaurant;
     
-    // Hide home section
+    //home hesgiig nuuna
     document.getElementById('homeSection').style.display = 'none';
     document.getElementById('restaurantSection').style.display = 'block';
     
-    // Update restaurant info
+    // restaurantiin medeelliig shinechlene
     document.getElementById('restaurantName').textContent = restaurant.rest_name;
     document.getElementById('restaurantCategory').textContent = getCategoryName(restaurant.category);
     document.getElementById('restaurantRating').innerHTML = '<span>' + restaurant.rank + '</span><span>★</span>';
@@ -674,7 +669,7 @@ function showRestaurantDetail(restaurantId) {
     document.getElementById('restaurantAddress').textContent = restaurant.address;
     document.getElementById('restaurantPhone').textContent = restaurant.phone;
     
-    // Load opening hours
+    //ongooh tsag
     document.getElementById('openingHours').innerHTML = `
         <div class="info-item"><span>🕒</span><span>${restaurant.schedule}</span></div>
     `;
@@ -686,16 +681,16 @@ function showRestaurantDetail(restaurantId) {
         ${restaurant.hasPromotion ? '<div class="info-item"><span>🎁</span><span>Урамшуулалтай</span></div>' : ''}
     `;
     
-    // Load menu
+    //tses achaalna
     loadMenu(restaurant);
     
-    // Reset tab to menu
+    //shine menug haruulna
     showTab('menu');
     
-    // Scroll to top
+    //deed hesegruu avaachna
     window.scrollTo(0, 0);
 }
-
+//ugugdliin san deerh nershluudiig mongol heleer haragduulna 
 function getCategoryName(category) {
     const names = {
         korean: 'Солонгос хоол',
@@ -709,7 +704,7 @@ function getCategoryName(category) {
     };
     return names[category] || category;
 }
-
+//restaurantiin hoolnii tsesiig haruulna
 function loadMenu(restaurant) {
     const menu = menuItems.default;
     const menuContainer = document.getElementById('menuItems');
@@ -731,7 +726,7 @@ function loadMenu(restaurant) {
         `;
     });
 }
-
+//tabuudiig shiljih bolomj olgono
 function initializeTabButtons() {
     document.querySelectorAll('.tab-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -740,21 +735,21 @@ function initializeTabButtons() {
         });
     });
 }
-
+//filter deer songolt hiihed tohiroh aguulgiig gargaj busdiig ni nuuna 
 function showTab(tabId) {
-    // Update active tab button
+    
     document.querySelectorAll('.tab-btn').forEach(function(b) {
         b.classList.remove('active');
     });
     document.querySelector('.tab-btn[data-tab="' + tabId + '"]').classList.add('active');
     
-    // Show active tab content
+  
     document.querySelectorAll('.tab-content').forEach(function(content) {
         content.classList.remove('active');
     });
     document.getElementById(tabId + 'Tab').classList.add('active');
 }
-
+//ene functsiig duudahad nuur huudsiig gargaj irne
 function showHome() {
     document.getElementById('restaurantSection').style.display = 'none';
     document.getElementById('cartSection').style.display = 'none';
@@ -763,19 +758,16 @@ function showHome() {
     document.getElementById('homeSection').style.display = 'block';
     hideFilteredResults();
 }
-
+//nuur huudasrruu butsaahdaa sagsiig tseverlene
 function goToHome() {
-    // Clear cart
+    //sagsiig tseverlene
     cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
     
     showHome();
 }
-
-// ===========================================
-// CART FUNCTIONS
-// ===========================================
+//umnu nemsen eseh ali restaurantiin hool ve gedgiig shalgana
 function addToCart(itemId) {
     if (!currentRestaurant) {
         showNotification('Эхлээд ресторан сонгоно уу');
@@ -787,7 +779,7 @@ function addToCart(itemId) {
     
     if (!item) return;
     
-    // Check if item already in cart
+    //sagsand bga esehiig ni shalgana
     const existingItem = cart.find(function(cartItem) {
         return cartItem.itemId === itemId && cartItem.restaurantId === currentRestaurant.id;
     });
@@ -810,7 +802,7 @@ function addToCart(itemId) {
     updateCartCount();
     showNotification(item.name + ' сагсанд нэмэгдлээ!');
 }
-
+//sagsabd hool nemeh hasah burt sagsand heden shirheg bgag haruuldag
 function updateCartCount() {
     const totalItems = cart.reduce(function(sum, item) { return sum + item.quantity; }, 0);
     const cartCountEl = document.getElementById('cartCount');
@@ -824,14 +816,14 @@ function updateCartCount() {
         }
     }
 }
-
+//sagsnii huuudsiig gargaj irne
 function showCart() {
     if (cart.length === 0) {
         showNotification('Таны сагс хоосон байна');
         return;
     }
     
-    // Hide other sections
+    //busad hesgiig nuuna
     document.getElementById('homeSection').style.display = 'none';
     document.getElementById('restaurantSection').style.display = 'none';
     document.getElementById('paymentSection').style.display = 'none';
@@ -840,7 +832,7 @@ function showCart() {
     
     renderCartItems();
 }
-
+//hereglegch sagsnii huudasnii butsah tovch darah uyd ajillah buguud suuld bsn hesegruu butsaana
 function hideCart() {
     document.getElementById('cartSection').style.display = 'none';
     
@@ -850,7 +842,7 @@ function hideCart() {
         document.getElementById('homeSection').style.display = 'block';
     }
 }
-
+//sagsan dahi hoolnii uniig tootsoolj hurgeltiin tulburiig nemj haruulna
 function renderCartItems() {
     const cartItemsEl = document.getElementById('cartItems');
     let total = 0;
@@ -882,11 +874,12 @@ function renderCartItems() {
     });
     
     const deliveryFee = 2500;
+    //delgets deerh niilber dunguudiig shinechlene
     document.getElementById('cartTotal').textContent = '₮' + total.toLocaleString();
     document.getElementById('deliveryTotal').textContent = '₮' + deliveryFee.toLocaleString();
     document.getElementById('grandTotal').textContent = '₮' + (total + deliveryFee).toLocaleString();
 }
-
+//sagsan dahi hoolnii too shirhegiig nemeh hasah uildliig udirdana
 function updateQuantity(index, change) {
     if (cart[index]) {
         cart[index].quantity += change;
@@ -906,7 +899,7 @@ function updateQuantity(index, change) {
         }
     }
 }
-
+//too shirhegees ul hamaaran sagsnaas ustgana
 function removeFromCart(index) {
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -919,10 +912,7 @@ function removeFromCart(index) {
         renderCartItems();
     }
 }
-
-// ===========================================
-// PAYMENT FUNCTIONS
-// ===========================================
+//zahialgiin medeellee oruulsnii daraa tulbur tuluh alhamruu shiljih uureg guitsetgene
 function proceedToPayment() {
     const bookingDate = document.getElementById('bookingDate').value;
     const bookingTime = document.getElementById('bookingTime').value;
@@ -933,22 +923,22 @@ function proceedToPayment() {
         return;
     }
     
-    // Store booking info
+    //zahialgiin medeelliig sanah oid hadgalna
     localStorage.setItem('bookingInfo', JSON.stringify({
         date: bookingDate,
         time: bookingTime,
         guests: guestCount
     }));
-    
+    //huudsuudiig solino
     document.getElementById('cartSection').style.display = 'none';
     document.getElementById('paymentSection').style.display = 'block';
     
-    // Render payment summary
+    //tulburiin negtgeliig haruulna
     renderPaymentSummary();
-    
+    //delgetsiig deesh ni guilgene
     window.scrollTo(0, 0);
 }
-
+//tulbur tuluhiiin umnuh shalgah huudas
 function renderPaymentSummary() {
     const bookingInfo = JSON.parse(localStorage.getItem('bookingInfo'));
     const summaryEl = document.getElementById('paymentSummary');
@@ -978,7 +968,7 @@ function renderPaymentSummary() {
         </div>
     `;
 }
-
+//tulbur guitsetgeh
 function processPayment() {
     const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
     
@@ -998,24 +988,24 @@ function processPayment() {
         }
     }
     
-    // Show loading
+    //tulbur bolovsruulah
     showNotification('Төлбөр хүлээж байна...');
     
-    // Simulate payment processing
+    //2 secundiin daraa amjillttai bolson huudasruu shiljine
     setTimeout(function() {
         showSuccess();
     }, 2000);
 }
-
+//tulbur amjilttai bolsnii daraa medeellin sand hadgalna
 function showSuccess() {
     document.getElementById('paymentSection').style.display = 'none';
     document.getElementById('successSection').style.display = 'block';
     
-    // Generate unique check-in code
+    //batalgaajuulah code uusgene
     const checkInCode = generateCheckInCode();
     document.getElementById('checkInCode').textContent = checkInCode;
     
-    // Save order
+    //zahialgiig hadgalna
     const bookingInfo = JSON.parse(localStorage.getItem('bookingInfo'));
     const order = {
         id: 'order_' + Date.now(),
@@ -1028,12 +1018,12 @@ function showSuccess() {
         createdAt: new Date().toISOString()
     };
     
-    //Save local
+    //locald hadgalna
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
 
-    //Save to Supabase
+    //supabased hadgalna
     async function createOrder() {
         const { data, error } = await supabase
           .from("orders")
@@ -1059,7 +1049,7 @@ function showSuccess() {
       }
       
     
-    // Display booking details
+    //zahialgiin medeelliig haruulna
     document.getElementById('bookingDetails').innerHTML = `
         <div class="booking-info">
             <p><strong>Ресторан:</strong> ${order.restaurant}</p>
@@ -1072,7 +1062,7 @@ function showSuccess() {
     
     window.scrollTo(0, 0);
 }
-
+//zahialgiinn medeelliig haruulna
 function displayMyOrder(){
     document.getElementById('bookingDetails').innerHTML=`
         <div class="booking-info">
@@ -1087,7 +1077,7 @@ function displayMyOrder(){
     `;
     window.scrollTo(0,0);
 }
-
+//batalgaajuulah code uusgene
 function generateCheckInCode() {
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let code = '';
@@ -1097,7 +1087,7 @@ function generateCheckInCode() {
     return code;
 }
 
-//user menu
+//hereglegchiin menu
 function showUserMenu() {
     document.getElementById('userMenuModal').style.display = 'flex';
 }
@@ -1133,7 +1123,7 @@ function viewOrders() {
             `
     }).join('\n'));
 }
-
+//durtai restaurantiin medeelel harah uildel
 function viewFavorites() {
     hideUserMenu();
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -1147,7 +1137,7 @@ function viewFavorites() {
         return f.name + ' (★' + f.rating + ')';
     }).join('\n'));
 }
-
+//restaurant huvaaltsah
 function shareRestaurant() {
     if (currentRestaurant) {
         const shareText = currentRestaurant.rest_name + ' - SnapEATs';
@@ -1162,7 +1152,7 @@ function shareRestaurant() {
         }
     }
 }
-
+//durtai jagsaaltad nemj hasah uildel
 function toggleFavorite() {
     if (!currentRestaurant) return;
     
@@ -1184,12 +1174,9 @@ function toggleFavorite() {
     
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }
-
-// ===========================================
-// UTILITY FUNCTIONS
-// ===========================================
+//hereglegchiin uildliig batalgaajuulj medeelel uguh
 function showNotification(message) {
-    // Remove existing notification
+    //huuchin medegdel ustgana
     const oldNotif = document.querySelector('.notification');
     if (oldNotif) oldNotif.remove();
     
@@ -1206,7 +1193,7 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Handle payment method change
+//cartaar tuluh gej songohod cartiin medeelel oruulah talbaruudiig haruulj busad uyd nuuna
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('input[name="paymentMethod"]').forEach(function(radio) {
         radio.addEventListener('change', function() {
@@ -1220,7 +1207,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Card number formatting
+//cartiiin dugaar bolon huchintei hugatsaag oruulah uyd system automataar zai avch tashuu zuraas nemj baina
 document.addEventListener('DOMContentLoaded', function() {
     const cardNumberInput = document.getElementById('cardNumber');
     if (cardNumberInput) {
