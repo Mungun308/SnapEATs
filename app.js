@@ -38,7 +38,7 @@ const restaurants = [
     { id: 15, rest_name: "Korean Street Food House", distance: "1.3 км", schedule: "Өнөөдөр: 09:00–21:00", address: "БЗД, 4-р хороо, Их тойруу 55", rank: 4.2, amount_of_people_ranked: 119, isNew: false, hasPromotion: true, isFeatured: false, category: "korean", phone: "7711-0166", cover: "./img/restaurant-cover1.jpg", logo: "./img/il-fiore.png" }
 ];
 
-// Sample menu for restaurants
+//restaurantiin tsesnii jihee
 const menuItems = {
     default: [
         { id: 1, name: "Signature Dish 1", description: "Тусгай хоол, шинэхэн орцтой", price: 24900, image: "./img/menu/pizza1.jpg", category: "Үндсэн" },
@@ -55,45 +55,45 @@ const categoryTitles = {
     featured: "ОНЦЛОХ"
 };
 
-//init
+//ehnii ehlelh functs
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Loaded');
     
-    // Check if user is logged in
+    //hereglegch nevtersen essehiig shalgana
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
         currentUser = JSON.parse(savedUser);
         showMainApp();
     }
     
-    // Load cart
+    //umnuh sagslasan baraanuudiig haij olno
     cart = JSON.parse(localStorage.getItem('cart')) || [];
-    updateCartCount();
+    updateCartCount(); //delgets deerh medeelliig shinechlene
     
-    // Initialize filters
-    initializeFilters();
-    initializeCategoryButtons();
-    initializeTabButtons();
+    //tovchluur deer darahad yu boloh
+    initializeFilters(); //shuultuuriig beldene
+    initializeCategoryButtons(); //category-iin tovchluur beldene
+    initializeTabButtons(); //tab shiljuuleh tovchluur beldene
     
-    // Set default booking date
+    //zahialgiin ognoog automatar tohiruulna hunungursun hugatsaand zahialga uguhuus sergiilne
     const bookingDate = document.getElementById('bookingDate');
     if (bookingDate) {
         const today = new Date().toISOString().split('T')[0];
-        bookingDate.value = today;
+        bookingDate.value = today; //anhnii utga unuudur
         bookingDate.min = today;
     }
     
-    // Set default booking time
+    //zahialgiin tsagiig automataar tohiruulna
     const bookingTime = document.getElementById('bookingTime');
     if (bookingTime) {
-        bookingTime.value = '19:00';
+        bookingTime.value = '19:00'; //anhnii utga
     }
 });
 
-//auth
+//nevtreh heseg
 function showLogin() {
-    document.getElementById('loginSection').style.display = 'block';
-    document.getElementById('signupSection').style.display = 'none';
+    document.getElementById('loginSection').style.display = 'block'; //block ni haruul gesen ug
+    document.getElementById('signupSection').style.display = 'none'; //none ni nuuh
     document.getElementById('errorMsg').textContent = '';
 }
 
@@ -102,7 +102,7 @@ function showSignup() {
     document.getElementById('signupSection').style.display = 'block';
     document.getElementById('errorMsg').textContent = '';
 }
-
+//hereglegchiig systemruu nevtruuleh
 async function login() {
     const username = document.getElementById('loginInput').value.trim();
     const password = document.getElementById('passwordInput').value;
@@ -124,7 +124,7 @@ async function login() {
         
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         
-        // Save to Supabase 
+        //hereglegchiig supabase-d hadgalna
         const {data,error}=await window.supabase
             .from('users')
             .insert([
@@ -153,30 +153,31 @@ async function login() {
         document.getElementById('errorMsg').textContent = 'Нэвтрэхэд алдаа гарлаа';
     }
 }
-
+//shine hereglegch burtguuleh, hereglegchiin oruulsan medeelel zuv esehiig shalgana
 async function signup() {
     const name = document.getElementById('signupName').value.trim();
     const username = document.getElementById('signupUsername').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
     const password = document.getElementById('signupPassword').value;
     const password2 = document.getElementById('signupPassword2').value;
-    
+    //hooson talbar bga esehiig shalgana
     if (!name || !username || !email || !password || !password2) {
         document.getElementById('errorMsg').textContent = 'Бүх талбарыг бөглөнө үү!';
         return;
     }
-    
+    //nuuts ug hoorondoo thirch buig shalgana
     if (password !== password2) {
         document.getElementById('errorMsg').textContent = 'Нууц үг таарахгүй байна!';
         return;
     }
-    
+    //nuuts ugnii urt
     if (password.length < 6) {
         document.getElementById('errorMsg').textContent = 'Нууц үг хамгийн багадаа 6 тэмдэгт байх ёстой!';
         return;
     }
     
     try {
+        //shine hereglegchiin objectiig beldene
         currentUser = {
             id: 'user_' + Date.now() + Math.random().toString(36).substr(2, 9),
             username: username,
@@ -185,27 +186,28 @@ async function signup() {
             loggedIn: true,
             createdAt: new Date().toISOString()
         };
-        
+        //sanah oid hadgalna
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         
         showMainApp();
         showNotification('Амжилттай бүртгүүллээ!');
         
     } catch (error) {
+        //genetiin aldaa garval barina
         console.error('Signup error:', error);
         document.getElementById('errorMsg').textContent = 'Бүртгүүлэхэд алдаа гарлаа';
     }
 }
-
+//garah functs
 function logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUser'); //sanah oig tseverlene
     currentUser = null;
     hideUserMenu();
     document.getElementById('mainApp').style.display = 'none';
     document.getElementById('loginRequiredModal').style.display = 'flex';
     showLogin();
 }
-
+//undsen appiig haruulna
 function showMainApp() {
     document.getElementById('loginRequiredModal').style.display = 'none';
     document.getElementById('mainApp').style.display = 'block';
@@ -214,17 +216,17 @@ function showMainApp() {
         document.getElementById('userDisplayName').textContent = currentUser.name || currentUser.username;
     }
     
-    // Get user location and initialize map
+    //hereglegchiin bairshliig avna init
     getUserLocation();
     
-    // Display restaurants
+    //restaurantuudiig delgetsend haruulna
     displayRestaurantsByCategory(currentCategory);
 }
 
-//location
+//bairshil togtooh functs
 function getUserLocation() {
     const mapDisplay = document.getElementById('mapDisplay');
-    
+    //hutuch bairshil togtoogchiig demjdeg eseh
     if (navigator.geolocation) {
         mapDisplay.innerHTML = '<p style="text-align: center; padding: 20px;">📍 Байршил тодорхойлж байна...</p>';
         
@@ -237,7 +239,7 @@ function getUserLocation() {
                 
                 console.log('User location:', userLocation);
                 
-                // Display map with user location
+                //gazriin zurag deer tanii bairshliig haruulna
                 mapDisplay.innerHTML = `
                     <iframe 
                         src="https://www.openstreetmap.org/export/embed.html?bbox=${userLocation.lng - 0.002}%2C${userLocation.lat - 0.002}%2C${userLocation.lng + 0.002}%2C${userLocation.lat + 0.002}&layer=mapnik&marker=${userLocation.lat}%2C${userLocation.lng}"
@@ -253,7 +255,7 @@ function getUserLocation() {
             },
             function(error) {
                 console.error('Geolocation error:', error);
-                // Default to Ulaanbaatar
+                //ulaanbaatar hot ruu shiljuulne
                 userLocation = { lat: 47.9184, lng: 106.9177 };
                 mapDisplay.innerHTML = `
                     <iframe 
@@ -266,9 +268,11 @@ function getUserLocation() {
                     </p>
                 `;
             },
+            //10 secunded todorhoilno
             { enableHighAccuracy: true, timeout: 10000 }
         );
     } else {
+        //hutuch bairshil togtoochgui bol ulaanbaatar-iig haruulna
         userLocation = { lat: 47.9184, lng: 106.9177 };
         mapDisplay.innerHTML = `
             <iframe 
@@ -280,16 +284,16 @@ function getUserLocation() {
     }
 }
 
-//filter
+//hoolnii filter idevhjuuleh functs
 function initializeFilters() {
-    // Food category checkboxes
+    //hoolnii turul songoh checkbox
     document.querySelectorAll('input[name="foodCategory"]').forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
             applyAllFilters();
         });
     });
     
-    // Price slider
+    //uniin slider
     const priceSlider = document.getElementById('slider');
     if (priceSlider) {
         priceSlider.addEventListener('input', function() {
@@ -298,7 +302,7 @@ function initializeFilters() {
         });
     }
     
-    // Star ratings
+    //odnii unelgee
     document.querySelectorAll('.star[data-value]').forEach(function(star) {
         star.addEventListener('click', function() {
             const ratingValue = parseInt(this.getAttribute('data-value'));
@@ -308,7 +312,7 @@ function initializeFilters() {
         });
     });
     
-    // Distance slider
+    //zainii slider
     const distanceSlider = document.getElementById('distance');
     if (distanceSlider) {
         distanceSlider.addEventListener('input', function() {
@@ -317,17 +321,19 @@ function initializeFilters() {
         });
     }
     
-    // Search input
+    //haih
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
+        //hereglegch bichih burt ajillana
         searchInput.addEventListener('input', function() {
             applyAllFilters();
         });
     }
     
-    // Category select
+    //angilal 
     const categorySelect = document.getElementById('category');
     if (categorySelect) {
+        //songolt soligdoh burt ajillana
         categorySelect.addEventListener('change', function() {
             applyAllFilters();
         });
@@ -359,7 +365,7 @@ function updateStarDisplay(ratingValue) {
         }
     });
 }
-
+//hereglegchiin darsang idevhtei bolgon delgets deer haruuldag
 function initializeCategoryButtons() {
     const categoryButtons = document.querySelectorAll('se-btn-filter');
     
@@ -380,16 +386,16 @@ function initializeCategoryButtons() {
                 titleElement.textContent = categoryTitles[category] || "РЕСТОРАНУУД";
             }
             
-            // Hide filtered results if showing
+            //umnuh hailtiin ilertsiig nuuna
             hideFilteredResults();
         });
     });
 }
-
+//hereglegch shuultuur ashiglasan esehiig shalgaad ashiglasan bol ur dung ni ashiglaagui bol undsen jagsaaltiig haruuldag
 function applyAllFilters() {
     const filters = getCurrentFilters();
     
-    // Check if any filters are active
+    //ymar negen shuultuur idevhtei bga esehiig shalgana
     const hasActiveFilters = filters.foodCategories.length > 0 || 
                             filters.minRating > 0 || 
                             filters.maxPrice < 100000 ||
@@ -406,7 +412,7 @@ function applyAllFilters() {
         displayRestaurantsByCategory(currentCategory);
     }
 }
-
+//buh shuultuuriin medeelliig neg bagts bolgono
 function getCurrentFilters() {
     const selectedFoodCategories = Array.from(document.querySelectorAll('input[name="foodCategory"]:checked'))
         .map(function(cb) { return cb.value; });
@@ -424,7 +430,7 @@ function getCurrentFilters() {
     
     const categorySelect = document.getElementById('category');
     const selectedCategory = categorySelect ? categorySelect.value : 'all';
-    
+    //buh medeelliig neg object bolgon butsaana
     return {
         foodCategories: selectedFoodCategories,
         maxPrice: maxPrice,
@@ -437,7 +443,7 @@ function getCurrentFilters() {
 
 function applyAdditionalFilters(restaurantsList, filters) {
     return restaurantsList.filter(function(restaurant) {
-        // Search filter
+        //hailt
         if (filters.searchTerm) {
             const searchLower = filters.searchTerm.toLowerCase();
             const nameLower = restaurant.rest_name.toLowerCase();
@@ -448,19 +454,19 @@ function applyAdditionalFilters(restaurantsList, filters) {
             }
         }
         
-        // Food category filter
+        //hoolnii turul
         if (filters.foodCategories.length > 0) {
             if (!filters.foodCategories.includes(restaurant.category)) {
                 return false;
             }
         }
         
-        // Rating filter
+        //unelgee
         if (filters.minRating > 0 && restaurant.rank < filters.minRating) {
             return false;
         }
         
-        // Distance filter
+        //zaig hurvuulne
         const distanceText = restaurant.distance;
         let distanceNum = parseFloat(distanceText.replace(' км', '').replace(' м', ''));
         if (distanceText.includes('м') && !distanceText.includes('км')) {
@@ -470,7 +476,7 @@ function applyAdditionalFilters(restaurantsList, filters) {
             return false;
         }
         
-        // Category select filter
+        //angilal
         if (filters.selectedCategory !== 'all') {
             const categoryMap = {
                 'asian': ['korean', 'japanese', 'chinese'],
@@ -489,7 +495,7 @@ function applyAdditionalFilters(restaurantsList, filters) {
     });
 }
 
-//category
+//turul
 function filterRestaurantsByCategory(category) {
     let filtered;
     switch (category) {
@@ -510,34 +516,34 @@ function filterRestaurantsByCategory(category) {
     }
     return filtered;
 }
-
+//hereglegchiin songoson angilaliig shuuj delgetsend hamgiin ehnii 10 ilertsiig haruulna
 function displayRestaurantsByCategory(category) {
     const filtered = filterRestaurantsByCategory(category);
     displayRestaurantsInList(filtered.slice(0, 10));
 }
-
+//shuugdej irsen restaurantuudiig delgets deer haruulna
 function displayRestaurantsInList(restaurantsToShow) {
     const listContainer = document.getElementById('restaurantList');
     if (!listContainer) return;
     
     listContainer.innerHTML = '';
     
-    // Add left arrow
+    //zuun tiish guilgeh sum
     listContainer.innerHTML += '<button class="arrowbtn" type="button" onclick="scrollRestaurants(-1)"><img src="./img/leftArrow.svg" alt="left"></button>';
     
-    // Add restaurant cards
+    //restaurantuudiin cardiig nemeh
     restaurantsToShow.forEach(function(restaurant, index) {
         const cardHTML = createRestaurantCard(restaurant, index);
         listContainer.innerHTML += cardHTML;
     });
     
-    // Add right arrow
+    //baruun tiish guilgeh sum 
     listContainer.innerHTML += '<button class="arrowbtn" type="button" onclick="scrollRestaurants(1)"><img src="./img/rightArrow.svg" alt="right"></button>';
     
-    // Make cards clickable
+    //kartiig darahad hariu uildel uzuulne
     makeCardsClickable();
 }
-
+//restaurantiin kart
 function createRestaurantCard(restaurant, index) {
     const reviews = formatReviews(restaurant.amount_of_people_ranked);
     
@@ -561,14 +567,14 @@ function createRestaurantCard(restaurant, index) {
         </article>
     `;
 }
-
+//unelgeenii toog boginosgono
 function formatReviews(count) {
     if (count >= 1000) {
         return (count / 1000).toFixed(1) + "k";
     }
     return count.toString();
 }
-
+//darahad hariu uildel uzuuldeg bolgono
 function makeCardsClickable() {
     document.querySelectorAll('.rest-profile').forEach(function(card) {
         card.style.cursor = 'pointer';
