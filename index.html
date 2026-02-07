@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <!-- Login Required Modal -->
     <div id="loginRequiredModal" class="login-modal" style="display: flex;">
         <div class="modal-content">
             <h2 style="margin-bottom: 20px; color: #ffa500; text-align: center;">SnapEATs-д тавтай морил!</h2>
@@ -40,7 +39,7 @@
         </div>
     </div>
 
-    <!-- Main App (hidden until login) -->
+    <!--main app hidden until login-->
     <div id="mainApp" style="display: none;">
         <nav>
             <h1>Snap<span>EAT</span>s</h1>
@@ -63,7 +62,6 @@
         </nav>
         
         <main>
-            <!-- HOME SECTION -->
             <section id="homeSection">
                 <aside class="filter">
                     <section class="filter-section">
@@ -168,7 +166,7 @@
                     </section>
                 </div>
                 
-                <!-- Filtered Results Section (hidden by default) -->
+                <!--filtered results-->
                 <section id="filteredResults" class="filtered-results" style="display: none;">
                     <div class="results-header">
                         <button onclick="hideFilteredResults()" class="back-btn">← Буцах</button>
@@ -183,7 +181,7 @@
                 </aside>
             </section>
 
-            <!-- RESTAURANT DETAIL SECTION -->
+            <!--rest detail-->
             <section id="restaurantSection" class="restaurant-detail" style="display: none;">
                 <div class="restaurant-header">
                     <button class="back-button" onclick="showHome()">←</button>
@@ -247,11 +245,9 @@
                             <div class="info-card">
                                 <h4>ХАЯГ БАЙРШИЛ</h4>
                                 <div class="info-item">
-                                    <span>📍</span>
                                     <span id="restaurantAddress">Төв цэнгэлдэх хүрээлэн, 3-р давхар</span>
                                 </div>
                                 <div class="info-item">
-                                    <span>📞</span>
                                     <span id="restaurantPhone">7711-0022</span>
                                 </div>
                             </div>
@@ -274,7 +270,7 @@
                 </div>
             </section>
 
-            <!-- CART SECTION -->
+            <!--cart-->
             <section id="cartSection" class="cart-section" style="display: none;">
                 <div class="cart-header">
                     <button onclick="hideCart()" class="back-btn">← Буцах</button>
@@ -321,7 +317,7 @@
                 <button onclick="proceedToPayment()" class="checkout-btn">Төлбөр хийх</button>
             </section>
 
-            <!-- PAYMENT SECTION -->
+            <!--payment-->
             <section id="paymentSection" class="payment-section" style="display: none;">
                 <div class="payment-header">
                     <button onclick="showCart()" class="back-btn">← Буцах</button>
@@ -336,15 +332,15 @@
                     <div class="payment-options">
                         <label class="payment-option">
                             <input type="radio" name="paymentMethod" value="card" checked>
-                            <span>💳 Картаар</span>
+                            <span>Картаар</span>
                         </label>
                         <label class="payment-option">
                             <input type="radio" name="paymentMethod" value="qpay">
-                            <span>📱 QPay</span>
+                            <span>QPay</span>
                         </label>
                         <label class="payment-option">
                             <input type="radio" name="paymentMethod" value="cash">
-                            <span>💵 Бэлнээр</span>
+                            <span>Бэлнээр</span>
                         </label>
                     </div>
                 </div>
@@ -367,7 +363,7 @@
                 <button onclick="processPayment()" class="pay-btn">Төлбөр хийх</button>
             </section>
 
-            <!-- SUCCESS SECTION -->
+            <!--payment success-->
             <section id="successSection" class="success-section" style="display: none;">
                 <div class="success-content">
                     <div class="success-icon">✓</div>
@@ -427,27 +423,26 @@
                 <p id="userDisplayName">Хэрэглэгч</p>
             </div>
             <div class="user-menu-items">
-                <button onclick="viewOrders()">📋 Миний захиалгууд</button>
-                <button onclick="viewFavorites()">❤️ Дуртай жагсаалт</button>
-                <button onclick="logout()">🚪 Гарах</button>
+                <button onclick="viewOrders()">Миний захиалгууд</button>
+                <button onclick="viewFavorites()">Fvaourites list</button>
+                <button onclick="logout()">Гарах</button>
             </div>
         </div>
     </div>
 <script>
-// Theme toggle functionality
+//dark mode
 function initializeTheme() {
     // Check for saved theme or prefer-color-scheme
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    // Set initial theme
+    //Set initial theme
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
         setDarkTheme();
     } else {
         setLightTheme();
     }
     
-    // Create and add theme toggle button to navigation
     addThemeToggleButton();
 }
 
@@ -481,17 +476,17 @@ function addThemeToggleButton() {
     themeToggle.setAttribute('aria-label', 'Toggle dark mode');
     themeToggle.onclick = toggleTheme;
     
-    // Add SVG icon
+    //Add SVG icon
     themeToggle.innerHTML = `
         <svg viewBox="0 0 24 24" width="24" height="24">
             <path d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/>
         </svg>
     `;
     
-    // Insert before the first child (user icon)
+    //Insert before the first child 
     navIcons.insertBefore(themeToggle, navIcons.firstChild);
     
-    // Update icon based on current theme
+    //Update icon based on current theme
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     updateThemeToggleIcon(isDark);
 }

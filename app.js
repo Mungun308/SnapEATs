@@ -214,10 +214,9 @@ function showMainApp() {
         document.getElementById('userDisplayName').textContent = currentUser.name || currentUser.username;
     }
     
-    // Get user location and initialize map
+    //herelgchiin location-g avch map init hiine
     getUserLocation();
     
-    // Display restaurants
     displayRestaurantsByCategory(currentCategory);
 }
 
@@ -522,19 +521,18 @@ function displayRestaurantsInList(restaurantsToShow) {
     
     listContainer.innerHTML = '';
     
-    // Add left arrow
+    //left arrow
     listContainer.innerHTML += '<button class="arrowbtn" type="button" onclick="scrollRestaurants(-1)"><img src="./img/leftArrow.svg" alt="left"></button>';
     
-    // Add restaurant cards
+    //Add restaurant cards
     restaurantsToShow.forEach(function(restaurant, index) {
         const cardHTML = createRestaurantCard(restaurant, index);
         listContainer.innerHTML += cardHTML;
     });
     
-    // Add right arrow
+    //right arrow
     listContainer.innerHTML += '<button class="arrowbtn" type="button" onclick="scrollRestaurants(1)"><img src="./img/rightArrow.svg" alt="right"></button>';
     
-    // Make cards clickable
     makeCardsClickable();
 }
 
