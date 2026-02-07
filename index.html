@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnapEATs</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="./com/se-btn-filter.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -188,8 +187,8 @@
                 <div class="restaurant-header">
                     <button class="back-button" onclick="showHome()">←</button>
                     <div class="action-buttons">
-                        <button class="action-btn" onclick="shareRestaurant()">🔗</button>
-                        <button class="action-btn" onclick="toggleFavorite()">❤️</button>
+                        <button class="action-btn" onclick="shareRestaurant()"><img src="./img/link.svg"></button>
+                        <button class="action-btn" onclick="toggleFavorite()"><img src="./img/heartt.svg"></button>
                     </div>
                     <img id="restaurantCover" class="restaurant-cover" src="" alt="Cover">
                 </div>
