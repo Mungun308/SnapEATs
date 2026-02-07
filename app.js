@@ -1,15 +1,29 @@
-console.log('SnapEATs App Initialized');
+// console.log('SnapEATs App Initialized');
 
-const supabaseUrl = "https://dbyzmxukmmiufnbtgwqq.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRieXpteHVrbW1pdWZuYnRnd3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU4OTI4MDEsImV4cCI6MjA1MTQ2ODgwMX0.example";
+// const supabaseUrl = "https://dbyzmxukmmiufnbtgwqq.supabase.co";
+// const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRieXpteHVrbW1pdWZuYnRnd3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU4OTI4MDEsImV4cCI6MjA1MTQ2ODgwMX0.example";
 
+// let supabaseClient = null;
+// try {
+//     if (typeof supabase !== 'undefined') {
+//         supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
+//     }
+// } catch (e) {
+//     console.log('Supabase not available, using localStorage only');
+// }
+
+// Initialize Supabase
 let supabaseClient = null;
 try {
-    if (typeof supabase !== 'undefined') {
+    // Check if supabase is available
+    if (typeof supabase !== 'undefined' && supabaseUrl && supabaseAnonKey) {
         supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
+        console.log('Supabase client initialized');
+    } else {
+        console.log('Supabase not available, using localStorage only');
     }
 } catch (e) {
-    console.log('Supabase not available, using localStorage only');
+    console.log('Supabase initialization error:', e);
 }
 
 
@@ -107,7 +121,7 @@ async function login() {
     const username = document.getElementById('loginInput').value.trim();
     const password = document.getElementById('passwordInput').value;
     
-    if (!username || !password) {
+    if (!username||!password) {
         document.getElementById('errorMsg').textContent = 'Бүх талбарыг бөглөнө үү!';
         return;
     }
@@ -247,7 +261,7 @@ function getUserLocation() {
                         allowfullscreen>
                     </iframe>
                     <p style="position: absolute; bottom: 10px; left: 10px; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 5px; font-size: 12px;">
-                        📍 Таны байршил
+                        Таны байршил
                     </p>
                 `;
                 
@@ -264,7 +278,7 @@ function getUserLocation() {
                         allowfullscreen>
                     </iframe>
                     <p style="position: absolute; bottom: 10px; left: 10px; background: rgba(255,255,255,0.9); padding: 5px 10px; border-radius: 5px; font-size: 12px;">
-                        📍 Улаанбаатар 
+                        Улаанбаатар 
                     </p>
                 `;
             },
@@ -653,7 +667,7 @@ function showRestaurantDetail(restaurantId) {
         return;
     }
     
-    currentRestaurant = restaurant;
+    currentRestaurant=restaurant;
     
     //home hesgiig nuuna
     document.getElementById('homeSection').style.display = 'none';
@@ -671,14 +685,14 @@ function showRestaurantDetail(restaurantId) {
     
     //ongooh tsag
     document.getElementById('openingHours').innerHTML = `
-        <div class="info-item"><span>🕒</span><span>${restaurant.schedule}</span></div>
+        <div class="info-item"><span>"Цагийн хуваарь"</span><span>${restaurant.schedule}</span></div>
     `;
     
     // Load features
     document.getElementById('restaurantFeatures').innerHTML = `
         <div class="info-item"><span>✓</span><span>Байршилд хооллох</span></div>
         <div class="info-item"><span>✓</span><span>Ширээ захиалах</span></div>
-        ${restaurant.hasPromotion ? '<div class="info-item"><span>🎁</span><span>Урамшуулалтай</span></div>' : ''}
+        ${restaurant.hasPromotion ? '<div class="info-item"><span></span><span>Урамшуулалтай</span></div>' : ''}
     `;
     
     //tses achaalna
@@ -997,18 +1011,23 @@ function processPayment() {
     }, 2000);
 }
 //tulbur amjilttai bolsnii daraa medeellin sand hadgalna
-function showSuccess() {
+    function showSuccess() {
     document.getElementById('paymentSection').style.display = 'none';
     document.getElementById('successSection').style.display = 'block';
     
     //batalgaajuulah code uusgene
     const checkInCode = generateCheckInCode();
     document.getElementById('checkInCode').textContent = checkInCode;
+
+    //niit dun
+    const total = cart.reduce(function(sum, item) { 
+        return sum + (item.price * item.quantity); 
+    }, 0) + 2500;
     
     //zahialgiig hadgalna
     const bookingInfo = JSON.parse(localStorage.getItem('bookingInfo'));
     const order = {
-        id: 'order_' + Date.now(),
+        id: 'order_' + Date.now()+ '_' + Math.random().toString(36).substr(2, 9),
         checkInCode: checkInCode,
         items: cart,
         bookingInfo: bookingInfo,
@@ -1017,6 +1036,36 @@ function showSuccess() {
         status: 'confirmed',
         createdAt: new Date().toISOString()
     };
+
+    try {
+        // Save to Supabase
+        if (supabaseClient) {
+            const { data, error } = supabaseClient
+                .from('orders')
+                .insert([{
+                    id: order.id,
+                    user_id: order.user_id,
+                    check_in_code: order.check_in_code,
+                    items: order.items,
+                    booking_info: order.booking_info,
+                    restaurant_name: order.restaurant_name,
+                    total: order.total,
+                    status: order.status,
+                    created_at: order.created_at
+                }]);
+            
+            if (error) {
+                console.error('Supabase error:', error);
+                //supabase faildvel locald hadgalna
+                showNotification('Захиалга амжилттай! (Офлайн горим)');
+            } else {
+                console.log('Order saved to Supabase:', data);
+                showNotification('Захиалга амжилттай хадгалагдлаа!');
+            }
+        }
+    } catch (error) {
+        console.error('Error saving to Supabase:', error);
+    }
     
     //locald hadgalna
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
@@ -1024,29 +1073,34 @@ function showSuccess() {
     localStorage.setItem('orders', JSON.stringify(orders));
 
     //supabased hadgalna
-    async function createOrder() {
-        const { data, error } = await supabase
-          .from("orders")
-          .insert([
-            {
-                id: 'order_' + Date.now(),
-                checkInCode: checkInCode,
-                items: cart,
-                bookingInfo: bookingInfo,
-                restaurant: cart[0] ? cart[0].restaurantName : '',
-                total: total,
-                status: 'confirmed',
-                createdAt: new Date().toISOString()
-            }
-          ])
-          .select();
+    // async function createOrder() {
+    //     const { data, error } = await supabase
+    //       .from("orders")
+    //       .insert([
+    //         {
+    //             id: 'order_' + Date.now(),
+    //             checkInCode: checkInCode,
+    //             items: cart,
+    //             bookingInfo: bookingInfo,
+    //             restaurant: cart[0] ? cart[0].restaurantName : '',
+    //             total: total,
+    //             status: 'confirmed',
+    //             createdAt: new Date().toISOString()
+    //         }
+    //       ])
+    //       .select();
       
-        if (error) {
-          console.error(error.message);
-        } else {
-          console.log("Order created:", data);
-        }
-      }
+    //     if (error) {
+    //       console.error(error.message);
+    //     } else {
+    //       console.log("Order created:", data);
+    //     }
+    //   }
+
+    //cart shinechilne
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
       
     
     //zahialgiin medeelliig haruulna
@@ -1096,34 +1150,121 @@ function hideUserMenu() {
     document.getElementById('userMenuModal').style.display = 'none';
 }
 
-function viewOrders() {
+async function viewOrders() {
     hideUserMenu();
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
     
-    if (orders.length === 0) {
-        showNotification('Захиалгын түүх хоосон байна');
-        return;
-    }
-    
-    let ordersList = orders.map(function(order) {
-        return `
-            <div style="background: #f4f4f8; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
-                <p><strong>${order.restaurant}</strong></p>
-                <p>Check-in код: <strong>${order.checkInCode}</strong></p>
-                <p>Огноо: ${order.bookingInfo.date} ${order.bookingInfo.time}</p>
-                <p>Нийт: ₮${order.total.toLocaleString()}</p>
+    try {
+        let orders = [];
+        
+        //login hiisn bol supabase-s data avna
+        if (supabaseClient && currentUser) {
+            const { data, error } = await supabaseClient
+                .from('orders')
+                .select('*')
+                .eq('user_id', currentUser.id)
+                .order('created_at', { ascending: false });
+            
+            if (!error && data) {
+                orders = data;
+            }
+        }
+        
+        //bolhgui bol local-d hadgalna
+        if (orders.length === 0) {
+            orders = JSON.parse(localStorage.getItem('orders')) || [];
+        }
+        
+        if (orders.length === 0) {
+            showNotification('Захиалгын түүх хоосон байна');
+            return;
+        }
+        
+        //order haruulah modal
+        const modal = document.createElement('div');
+        modal.className = 'login-modal';
+        modal.style.display = 'flex';
+        modal.style.zIndex = '3000';
+        
+        let ordersHTML = orders.map(function(order) {
+            const orderDate = new Date(order.created_at).toLocaleDateString('mn-MN');
+            return `
+                <div style="background: var(--color-white); padding: 15px; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--color-grey);">
+                    <p><strong>${order.restaurant_name || 'Ресторан'}</strong></p>
+                    <p><strong>Check-in код:</strong> ${order.check_in_code}</p>
+                    <p><strong>Огноо:</strong> ${orderDate}</p>
+                    <p><strong>Нийт:</strong> ₮${order.total ? order.total.toLocaleString() : '0'}</p>
+                    <p><strong>Төлөв:</strong> ${order.status || 'Баталгаажсан'}</p>
+                </div>
+            `;
+        }).join('');
+        
+        modal.innerHTML = `
+            <div class="modal-content" style="max-width: 500px; max-height: 70vh; overflow-y: auto;">
+                <button onclick="this.parentElement.parentElement.remove()" class="close-btn" style="position: absolute; right: 15px; top: 10px;">×</button>
+                <h2 style="margin-bottom: 20px; color: var(--color-orange);">Миний захиалгууд</h2>
+                <div id="ordersList">
+                    ${ordersHTML}
+                </div>
+                <button onclick="this.parentElement.parentElement.remove()" class="auth-btn primary-btn" style="margin-top: 20px;">Хаах</button>
             </div>
         `;
-    }).join('');
-    
-    alert('Миний захиалгууд:\n\n' + orders.map(function(o) {
-        return `
-            <div class="show-order">
-
-            `
-    }).join('\n'));
+        
+        document.body.appendChild(modal);
+        
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        showNotification('Захиалга ачааллахад алдаа гарлаа');
+    }
 }
-//durtai restaurantiin medeelel harah uildel
+
+
+//     hideUserMenu();
+
+//     try {
+//         let orders = [];
+        
+//         if (supabaseClient && currentUser) {
+//             const { data, error } = await supabaseClient
+//                 .from('orders')
+//                 .select('*')
+//                 .eq('user_id', currentUser.id)
+//                 .order('created_at', { ascending: false });
+            
+//             if (!error && data) {
+//                 orders = data;
+//             }
+//         }
+
+//     if (orders.length === 0) {
+//             orders = JSON.parse(localStorage.getItem('orders')) || [];
+//         }
+    
+//     if (orders.length === 0) {
+//         showNotification('Захиалгын түүх хоосон байна');
+//         return;
+//     }
+    
+//     let ordersList = orders.map(function(order) {
+//         return `
+//             <div style="background: #f4f4f8; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+//                 <p><strong>${order.restaurant}</strong></p>
+//                 <p>Check-in код: <strong>${order.checkInCode}</strong></p>
+//                 <p>Огноо: ${order.bookingInfo.date} ${order.bookingInfo.time}</p>
+//                 <p>Нийт: ₮${order.total.toLocaleString()}</p>
+//             </div>
+//         `;
+//     }).join('');
+    
+//     alert('Миний захиалгууд:\n\n' + orders.map(function(o) {
+//         return `
+//             <div class="show-order">
+
+//             `
+//     }).join('\n'));
+// }
+// }
+
+//fav restaurantiin medeelel harah uildel
 function viewFavorites() {
     hideUserMenu();
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -1152,7 +1293,7 @@ function shareRestaurant() {
         }
     }
 }
-//durtai jagsaaltad nemj hasah uildel
+//fav jagsaaltad nemj hasah uildel
 function toggleFavorite() {
     if (!currentRestaurant) return;
     
@@ -1166,10 +1307,10 @@ function toggleFavorite() {
             logo: currentRestaurant.logo,
             rating: currentRestaurant.rank
         });
-        showNotification('Дуртай жагсаалтад нэмэгдлээ!');
+        showNotification('Favourite жагсаалтад нэмэгдлээ!');
     } else {
         favorites.splice(index, 1);
-        showNotification('Дуртай жагсаалтаас хасагдлаа!');
+        showNotification('Favourite жагсаалтаас хасагдлаа!');
     }
     
     localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -1214,8 +1355,8 @@ document.addEventListener('DOMContentLoaded', function() {
         cardNumberInput.addEventListener('input', function() {
             let value = this.value.replace(/\s/g, '').replace(/\D/g, '');
             let formatted = '';
-            for (let i = 0; i < value.length && i < 16; i++) {
-                if (i > 0 && i % 4 === 0) {
+            for (let i=0;i<value.length&&i<16;i++) {
+                if (i>0&&i%4===0) {
                     formatted += ' ';
                 }
                 formatted += value[i];

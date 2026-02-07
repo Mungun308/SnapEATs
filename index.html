@@ -419,7 +419,7 @@
         <div class="user-menu-content">
             <button onclick="hideUserMenu()" class="close-btn">×</button>
             <div class="user-info">
-                <div class="user-avatar">👤</div>
+                <div class="user-avatar"><img src="./img/userButton.svg"></div>
                 <p id="userDisplayName">Хэрэглэгч</p>
             </div>
             <div class="user-menu-items">
@@ -513,7 +513,7 @@ document.addEventListener('DOMContentLoaded', initializeTheme);
 // Listen for system theme changes
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     const savedTheme = localStorage.getItem('theme');
-    if (!savedTheme) { // Only auto-switch if user hasn't manually set a theme
+    if (!savedTheme) { 
         if (e.matches) {
             setDarkTheme();
         } else {
