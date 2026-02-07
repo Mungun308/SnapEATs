@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <!-- Login Required Modal -->
+    <!-- nevtreh heseg nevtreegui tohioldold busad hesgiig ashiglah bolomjgui -->
     <div id="loginRequiredModal" class="login-modal" style="display: flex;">
         <div class="modal-content">
             <h2 style="margin-bottom: 20px; color: #ffa500; text-align: center;">SnapEATs-д тавтай морил!</h2>
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <!-- Main App (hidden until login) -->
+    <!-- login hiih hurtel nuusan baina main heseg -->
     <div id="mainApp" style="display: none;">
         <nav>
             <h1>Snap<span>EAT</span>s</h1>
@@ -63,7 +63,7 @@
         </nav>
         
         <main>
-            <!-- HOME SECTION -->
+            <!-- home heseg -->
             <section id="homeSection">
                 <aside class="filter">
                     <section class="filter-section">
@@ -168,7 +168,7 @@
                     </section>
                 </div>
                 
-                <!-- Filtered Results Section (hidden by default) -->
+                <!-- shuultuur ashiglah uyd ur dung haruulna -->
                 <section id="filteredResults" class="filtered-results" style="display: none;">
                     <div class="results-header">
                         <button onclick="hideFilteredResults()" class="back-btn">← Буцах</button>
@@ -176,14 +176,14 @@
                     </div>
                     <div id="filteredRestaurantList" class="filtered-list"></div>
                 </section>
-                
+                <! --hajuugiin ad --> 
                 <aside class="ad">
                     <div class="aside-ad"><img src="./img/ad.jpg" alt="ramen ad"></div>
                     <div class="aside-ad"><img src="./img/ad2.jpeg" alt="potato ad"></div>
                 </aside>
             </section>
 
-            <!-- RESTAURANT DETAIL SECTION -->
+            <!-- restaurantiin medeelliin heseg -->
             <section id="restaurantSection" class="restaurant-detail" style="display: none;">
                 <div class="restaurant-header">
                     <button class="back-button" onclick="showHome()">←</button>
@@ -274,7 +274,7 @@
                 </div>
             </section>
 
-            <!-- CART SECTION -->
+            <!-- sagsnii heseg -->
             <section id="cartSection" class="cart-section" style="display: none;">
                 <div class="cart-header">
                     <button onclick="hideCart()" class="back-btn">← Буцах</button>
@@ -321,7 +321,7 @@
                 <button onclick="proceedToPayment()" class="checkout-btn">Төлбөр хийх</button>
             </section>
 
-            <!-- PAYMENT SECTION -->
+            <!-- tulburiin heseg -->
             <section id="paymentSection" class="payment-section" style="display: none;">
                 <div class="payment-header">
                     <button onclick="showCart()" class="back-btn">← Буцах</button>
@@ -367,7 +367,7 @@
                 <button onclick="processPayment()" class="pay-btn">Төлбөр хийх</button>
             </section>
 
-            <!-- SUCCESS SECTION -->
+            <!-- amjilttai bolsoniig haruulna -->
             <section id="successSection" class="success-section" style="display: none;">
                 <div class="success-content">
                     <div class="success-icon">✓</div>
@@ -418,7 +418,7 @@
         </div>
     </div>
 
-    <!-- User Menu Modal -->
+    <!-- hereglegch uuriin zahialgiin tuuh hadgalsan restaurantaa harah systemees garah -->
     <div id="userMenuModal" class="user-menu-modal" style="display: none;">
         <div class="user-menu-content">
             <button onclick="hideUserMenu()" class="close-btn">×</button>
@@ -434,27 +434,27 @@
         </div>
     </div>
 <script>
-// Theme toggle functionality
+// dark mode light mode 
 function initializeTheme() {
-    // Check for saved theme or prefer-color-scheme
+    //hadgalagdsan theme-g shalgana
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    // Set initial theme
+    //anhnii themeg ugnu
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
         setDarkTheme();
     } else {
         setLightTheme();
     }
     
-    // Create and add theme toggle button to navigation
+    //nav hesegt ene tovchiig nemne
     addThemeToggleButton();
 }
-
+//baraan gorimd shiljuulne
 function setDarkTheme() {
     document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-    updateThemeToggleIcon(true);
+    localStorage.setItem('theme', 'dark'); //songoltiig localstoraged hadgalna
+    updateThemeToggleIcon(true); //theme solih tovchluuriig uurchlunu
 }
 
 function setLightTheme() {
@@ -463,7 +463,7 @@ function setLightTheme() {
     updateThemeToggleIcon(false);
 }
 
-function toggleTheme() {
+function toggleTheme() { //themeg solih uurgiig guitsetgene
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     if (isDark) {
         setLightTheme();
@@ -471,7 +471,7 @@ function toggleTheme() {
         setDarkTheme();
     }
 }
-
+//nav hesegt tovchluuriig bairluulnaexp
 function addThemeToggleButton() {
     const navIcons = document.querySelector('.icon');
     if (!navIcons) return;
@@ -481,26 +481,26 @@ function addThemeToggleButton() {
     themeToggle.setAttribute('aria-label', 'Toggle dark mode');
     themeToggle.onclick = toggleTheme;
     
-    // Add SVG icon
+    //tovchluuur dotor durs zurna
     themeToggle.innerHTML = `
         <svg viewBox="0 0 24 24" width="24" height="24">
             <path d="M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36c-0.98,1.37-2.58,2.26-4.4,2.26 c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/>
         </svg>
     `;
     
-    // Insert before the first child (user icon)
+    //tovchluur urd  garch irne
     navIcons.insertBefore(themeToggle, navIcons.firstChild);
     
-    // Update icon based on current theme
+    //udoogiin theme-d zoriulj dursiig tohiruulna
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     updateThemeToggleIcon(isDark);
 }
-
+//theme soligdoh uyd tovchluuriin dursiig solino
 function updateThemeToggleIcon(isDark) {
     const themeToggle = document.querySelector('.theme-toggle svg');
     if (!themeToggle) return;
     
-    // Sun icon for dark mode, moon icon for light mode
+    //dark-nar light - sar
     if (isDark) {
         themeToggle.innerHTML = `
             <path d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"/>
@@ -512,13 +512,13 @@ function updateThemeToggleIcon(isDark) {
     }
 }
 
-// Initialize theme when DOM is loaded
+//songosom them-g sanana
 document.addEventListener('DOMContentLoaded', initializeTheme);
 
-// Listen for system theme changes
+//hereglegchiin pcnii thirgoog dagana
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     const savedTheme = localStorage.getItem('theme');
-    if (!savedTheme) { // Only auto-switch if user hasn't manually set a theme
+    if (!savedTheme) { //hereglegch theme-g tohiruulaagui bol auttomataar tohiruulna
         if (e.matches) {
             setDarkTheme();
         } else {
