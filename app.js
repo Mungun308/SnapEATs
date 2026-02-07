@@ -1,4 +1,4 @@
-// console.log('SnapEATs App Initialized');
+// console.log('SnapEATs App');
 
 // const supabaseUrl = "https://dbyzmxukmmiufnbtgwqq.supabase.co";
 // const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRieXpteHVrbW1pdWZuYnRnd3FxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU4OTI4MDEsImV4cCI6MjA1MTQ2ODgwMX0.example";
@@ -12,10 +12,10 @@
 //     console.log('Supabase not available, using localStorage only');
 // }
 
-// Initialize Supabase
+//Supabase
 let supabaseClient = null;
 try {
-    // Check if supabase is available
+    
     if (typeof supabase !== 'undefined' && supabaseUrl && supabaseAnonKey) {
         supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
         console.log('Supabase client initialized');
