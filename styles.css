@@ -1492,7 +1492,7 @@ h3{
     z-index: 3000;
     animation: slideUp 0.3s ease;
 }
-
+//animation
 @keyframes slideUp {
     from {
         transform: translateX(-50%) translateY(50px);
