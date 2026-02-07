@@ -30,9 +30,8 @@ body{
     --shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* ===========================================
-   nevtreh modaliin zagvaruud
-=========================================== */
+/*
+   nevtreh modaliin zagvaruud */
 .login-modal {
     position: fixed;
     top: 0;
