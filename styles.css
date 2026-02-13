@@ -3,7 +3,10 @@
     padding:0;
     box-sizing:border-box;
     font-family: var(--font-family);
+<<<<<<< HEAD
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+=======
+>>>>>>> ea50685 (initial commit)
 }
 
 @font-face{
@@ -31,8 +34,16 @@ body{
     --shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+<<<<<<< HEAD
 /*
    nevtreh modaliin zagvaruud */
+=======
+.home-layout { display: contents; }
+filters-panel { grid-area: sid; }
+#filteredResults { grid-area: cnt; }
+#homeSection > aside.ad { grid-area: ad; }
+
+>>>>>>> ea50685 (initial commit)
 .login-modal {
     position: fixed;
     top: 0;
@@ -46,6 +57,10 @@ body{
     z-index: 2000;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea50685 (initial commit)
 .modal-content {
     background: white;
     padding: 30px;
@@ -114,7 +129,11 @@ body{
     font-size: 14px;
 }
 
+<<<<<<< HEAD
 /* navigation zagvaruud */
+=======
+
+>>>>>>> ea50685 (initial commit)
 nav{
     background-color: var(--color-white);
     padding: 15px 30px;
@@ -256,6 +275,14 @@ main{
     max-width: 180px;
 }
 
+<<<<<<< HEAD
+=======
+
+filters-panel{
+    grid-area: sid;
+}
+
+>>>>>>> ea50685 (initial commit)
 .filter-section{
     display: flex;
 
@@ -266,6 +293,10 @@ main{
     border-bottom: 0.1px solid var(--color-blue);
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea50685 (initial commit)
 .filter-title{
     font-weight: bold;
     color:var(--color-blue);
@@ -539,7 +570,11 @@ h3{
     background: var(--color-grey);
 }
 
+<<<<<<< HEAD
 /*doloo honogiin tusgai ad*/
+=======
+/*weekly special ad*/
+>>>>>>> ea50685 (initial commit)
 .special{
     width: 100%;
     display: flex;
@@ -574,7 +609,11 @@ h3{
     object-fit: cover;
 }
 
+<<<<<<< HEAD
 /*hajuugiiin ad*/
+=======
+/*aside ad*/
+>>>>>>> ea50685 (initial commit)
 .ad{
     grid-area: ad;
     padding: 20px;
@@ -690,7 +729,11 @@ h3{
     color: var(--color-orange);
 }
 
+<<<<<<< HEAD
 /* restaurantiin medeelel*/
+=======
+/* rest detail */
+>>>>>>> ea50685 (initial commit)
 .restaurant-detail {
     grid-column: 1 / -1;
     max-width: 900px;
@@ -972,7 +1015,11 @@ h3{
     margin-top: 15px;
 }
 
+<<<<<<< HEAD
 /*sags*/
+=======
+/*cart*/
+>>>>>>> ea50685 (initial commit)
 .cart-section {
     grid-column: 1 / -1;
     max-width: 700px;
@@ -1153,7 +1200,11 @@ h3{
     background: #e69500;
 }
 
+<<<<<<< HEAD
 /*tulbur*/
+=======
+/*payment*/
+>>>>>>> ea50685 (initial commit)
 .payment-section {
     grid-column: 1 / -1;
     max-width: 600px;
@@ -1275,7 +1326,11 @@ h3{
     background: #219a52;
 }
 
+<<<<<<< HEAD
 /*amjilttai zahialga*/
+=======
+/*successful order*/
+>>>>>>> ea50685 (initial commit)
 .success-section {
     grid-column: 1 / -1;
     display: flex;
@@ -1370,8 +1425,12 @@ h3{
     background: #e69500;
 }
 
+<<<<<<< HEAD
 /* sags tovchnii zagvar
  */
+=======
+/* basket style */
+>>>>>>> ea50685 (initial commit)
 .basket button{
     position: fixed;
     bottom: 24px;
@@ -1411,7 +1470,11 @@ h3{
     font-weight: bold;
 }
 
+<<<<<<< HEAD
 /* hereglegchiin menu zagvar*/
+=======
+/* user menu */
+>>>>>>> ea50685 (initial commit)
 .user-menu-modal {
     position: fixed;
     top: 0;
@@ -1493,7 +1556,11 @@ h3{
     z-index: 3000;
     animation: slideUp 0.3s ease;
 }
+<<<<<<< HEAD
 //animation
+=======
+
+>>>>>>> ea50685 (initial commit)
 @keyframes slideUp {
     from {
         transform: translateX(-50%) translateY(50px);
@@ -1547,6 +1614,7 @@ footer{
     color: var(--color-orange);
 }
 
+<<<<<<< HEAD
 
 @media screen and (max-width: 768px) {
     
@@ -1604,6 +1672,69 @@ footer{
 /* dark theme-iin zagvar */
 
 /* dark theme-iin huvisagchid */
+=======
+@media (max-width: 900px) {
+    main {
+        grid-template-areas: 
+            "cnt"
+            "ftr";
+        grid-template-columns: 1fr;
+    }
+    
+    #homeSection {
+        display: block;
+    }
+    
+    .filter {
+        display: none;
+    }
+    
+    .ad {
+        display: none;
+    }
+    
+    .main-content {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 10px 15px;
+    }
+    
+    nav form {
+        display: none;
+    }
+    
+    .restaurant-logo {
+        width: 60px;
+        height: 60px;
+        top: -30px;
+    }
+    
+    .restaurant-title-section {
+        margin-left: 80px;
+    }
+    
+    .restaurant-stats {
+        flex-wrap: wrap;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    footer {
+        flex-direction: column;
+        text-align: start;
+    }
+}
+
+
+
+/* Dark mode variables */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] {
     --color-blue: #1A1C2E;
     --color-grey: #2A2C3C;
@@ -1613,7 +1744,11 @@ footer{
     --shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+<<<<<<< HEAD
 /* theme solih tovchluur */
+=======
+/* Theme toggle button */
+>>>>>>> ea50685 (initial commit)
 .theme-toggle {
     background: transparent;
     border: none;
@@ -1637,15 +1772,30 @@ footer{
     fill: var(--color-orange);
 }
 
+<<<<<<< HEAD
 /* dark theme-iin zagvaruud */
+=======
+/* Dark mode specific styles */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] body {
     background-color: var(--color-grey);
     color: #E0E0E0;
 }
 
+<<<<<<< HEAD
 [data-theme="dark"] nav {
     background-color: var(--color-blue);
     color: #FFFFFF;
+=======
+[data-theme="dark"] filter-btn{
+    background-color: var(--color-blue);
+    color: var(--color-grey);
+}
+
+[data-theme="dark"] nav {
+    background-color: var(--color-blue);
+    color: var(--color-white);
+>>>>>>> ea50685 (initial commit)
 }
 
 [data-theme="dark"] nav h1 {
@@ -1794,7 +1944,11 @@ footer{
     color: var(--color-yellow);
 }
 
+<<<<<<< HEAD
 /* dark theme-iin scrollbar */
+=======
+/* Scrollbar for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -1813,7 +1967,11 @@ footer{
     background: #5A5C6C;
 }
 
+<<<<<<< HEAD
 /* dark theme-iin range slider */
+=======
+/* Range sliders for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] input[type="range"] {
     background: #4A4C5C;
 }
@@ -1832,7 +1990,11 @@ footer{
     filter: brightness(0.8);
 }
 
+<<<<<<< HEAD
 /* dark theme-iin link */
+=======
+/* Links in dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] a {
     color: var(--color-yellow);
 }
@@ -1841,37 +2003,61 @@ footer{
     color: var(--color-orange);
 }
 
+<<<<<<< HEAD
 /* Placeholder herhen haragdahiig todorhoilno */
+=======
+/* Placeholder text */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] ::placeholder {
     color: #8A8A8A;
 }
 
+<<<<<<< HEAD
 /* text idevhjuulehed ulbar shar ungutei bolno */
+=======
+/* Selection color */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] ::selection {
     background-color: var(--color-orange);
     color: white;
 }
 
+<<<<<<< HEAD
+=======
+/* Loading spinner for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] .loading-spinner {
     border-color: #4A4C5C;
     border-top-color: var(--color-orange);
 }
 
+<<<<<<< HEAD
 /* medegdel */
+=======
+/* Alert messages */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] .alert {
     background-color: #3A3C4C;
     color: #E0E0E0;
     border-color: #4A4C5C;
 }
 
+<<<<<<< HEAD
 /* hulganaa avaachhad garch ireh tailbar */
+=======
+/* Tooltips */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] .tooltip {
     background-color: var(--color-blue);
     color: #E0E0E0;
     border: 1px solid #4A4C5C;
 }
 
+<<<<<<< HEAD
 /* buuj irdeg menu */
+=======
+/* Dropdown menus */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] select,
 [data-theme="dark"] .dropdown-content {
     background-color: var(--color-blue);
@@ -1879,21 +2065,33 @@ footer{
     border-color: #4A4C5C;
 }
 
+<<<<<<< HEAD
 /* dark theme-d hureenii ungu */
+=======
+/* Borders in dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] .border,
 [data-theme="dark"] .card,
 [data-theme="dark"] .modal-content {
     border-color: #4A4C5C;
 }
 
+<<<<<<< HEAD
 /* idevhgui elementuud */
+=======
+/* Disabled elements */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] :disabled {
     opacity: 0.6;
     background-color: #3A3C4C;
     color: #8A8A8A;
 }
 
+<<<<<<< HEAD
 /* dark theme-iiin success error warning */
+=======
+/* Success/error colors for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] .success {
     color: #4CAF50;
 }
@@ -1906,12 +2104,20 @@ footer{
     color: #FF9800;
 }
 
+<<<<<<< HEAD
 /* darkiin map */
+=======
+/* Map container for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] .map-container {
     filter: brightness(0.8) contrast(1.2);
 }
 
+<<<<<<< HEAD
 /* textnii ungu */
+=======
+/* Text colors for better readability */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] h1, 
 [data-theme="dark"] h2, 
 [data-theme="dark"] h3, 
@@ -1927,7 +2133,11 @@ footer{
     color: #CCCCCC !important;
 }
 
+<<<<<<< HEAD
 /* dark theme-iin husnegt*/
+=======
+/* Table styles for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] table {
     background-color: var(--color-blue);
     color: #E0E0E0;
@@ -1943,7 +2153,11 @@ footer{
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+<<<<<<< HEAD
 /* darkiin tovchluur */
+=======
+/* Button variations for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] .btn-outline {
     border-color: #4A4C5C;
     color: #E0E0E0;
@@ -1954,7 +2168,11 @@ footer{
     color: #FFFFFF;
 }
 
+<<<<<<< HEAD
 /* buruu medeelliig ulaan unguur haruulna */
+=======
+/* Form validation for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] input:invalid {
     border-color: #F44336;
 }
@@ -1963,7 +2181,11 @@ footer{
     border-color: #4CAF50;
 }
 
+<<<<<<< HEAD
 /* dark moded   */
+=======
+/* Code blocks for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] code,
 [data-theme="dark"] pre {
     background-color: #2A2C3C;
@@ -1971,14 +2193,22 @@ footer{
     border-color: #4A4C5C;
 }
 
+<<<<<<< HEAD
 /* dark mode ishlelliig ontsolno */
+=======
+/* Blockquote for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] blockquote {
     border-left-color: var(--color-orange);
     background-color: #3A3C4C;
     color: #E0E0E0;
 }
 
+<<<<<<< HEAD
 /* dark moded tovchluur darahd idevhtei bolj ulbar shar hureetei bolno */
+=======
+/* Progress bars for dark mode */
+>>>>>>> ea50685 (initial commit)
 [data-theme="dark"] progress {
     background-color: #3A3C4C;
 }
