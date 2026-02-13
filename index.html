@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SnapEATs</title>
     <link rel="stylesheet" href="styles.css">
+<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+=======
+>>>>>>> ea50685 (initial commit)
 </head>
 <body>
     <!-- nevtreh heseg nevtreegui tohioldold busad hesgiig ashiglah bolomjgui -->
@@ -40,6 +43,7 @@
     </div>
 
     <!-- login hiih hurtel nuusan baina main heseg -->
+<<<<<<< HEAD
     <div id="mainApp" style="display: block;">
         <nav>
             <h1>Snap<span>EAT</span>s</h1>
@@ -60,10 +64,15 @@
                 <button id="userBtn" onclick="showUserMenu()"><img src="./img/userButton.svg" alt="user"></button>
             </div>
         </nav>
+=======
+    <div id="mainApp" style="display: flex;">
+        <app-header></app-header>
+>>>>>>> ea50685 (initial commit)
         
         <main>
             <!-- home heseg -->
             <section id="homeSection">
+<<<<<<< HEAD
                 <aside class="filter">
                     <section class="filter-section">
                         <p class="filter-title">ХООЛНЫ ТӨРӨЛ</p>
@@ -132,6 +141,9 @@
                     
                     <button class="search-btn" type="button" onclick="applyAllFilters()"><img src="./img/searchButton.svg" alt="search"></button>
                 </aside>
+=======
+                <filters-panel></filters-panel>
+>>>>>>> ea50685 (initial commit)
                 
                 <div class="main-content">
                     <section class="map">
@@ -175,7 +187,10 @@
                     </div>
                     <div id="filteredRestaurantList" class="filtered-list"></div>
                 </section>
+<<<<<<< HEAD
                 <! --hajuugiin ad --> 
+=======
+>>>>>>> ea50685 (initial commit)
                 <aside class="ad">
                     <div class="aside-ad"><img src="./img/ad.jpg" alt="ramen ad"></div>
                     <div class="aside-ad"><img src="./img/ad2.jpeg" alt="potato ad"></div>
@@ -201,7 +216,11 @@
                         <p id="restaurantCategory" class="restaurant-category"></p>
                         <div id="restaurantRating" class="rating-badge">
                             <span>4.5</span>
+<<<<<<< HEAD
                             <span>★</span>
+=======
+                            <span><img src="./img/star.svg"></span>
+>>>>>>> ea50685 (initial commit)
                         </div>
                     </div>
                     
@@ -380,6 +399,7 @@
                 </div>
             </section>
             
+<<<<<<< HEAD
             <footer>
                 <div class="footer-section">
                     <h4>БИДЭНТЭЙ ХОЛБОГДОХ</h4>
@@ -407,6 +427,29 @@
             </footer>
         </main>
         
+=======
+        
+            <!-- Added for teacher SPA routes -->
+            <section id="profileSection" style="display:none;">
+                <div class="profile-page">
+                    <h2>Profile</h2>
+                    <p>#/profile route</p>
+                    <button type="button" onclick="showHome()">Home</button>
+                </div>
+            </section>
+
+            <section id="aboutSection" style="display:none;">
+                <div class="about-page">
+                    <h2>About</h2>
+                    <p>#/about route</p>
+                    <button type="button" onclick="showHome()">Home</button>
+                </div>
+            </section>
+
+</main>
+<app-footer></app-footer>
+
+>>>>>>> ea50685 (initial commit)
         <div class="basket">
             <button onclick="showCart()">
                 <img src="./img/basket.svg" alt="basket">
@@ -524,6 +567,10 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
     }
 });
 </script>
+<<<<<<< HEAD
     <script src="app.js"></script>
+=======
+    <script type="module" src="main.js"></script>
+>>>>>>> ea50685 (initial commit)
 </body>
 </html>
